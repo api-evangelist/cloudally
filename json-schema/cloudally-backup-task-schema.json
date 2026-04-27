@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.cloudally.com/schemas/backup-task.json",
+  "title": "CloudAlly Backup Task",
+  "description": "Schema for a CloudAlly backup task. A backup task represents the configuration that protects a specific SaaS workload (Microsoft 365 mailbox, Google Workspace user, Salesforce org, Box account, or Dropbox account). The task carries identifying metadata, scheduling info, status, and links to the most recent backup snapshot.",
+  "type": "object",
+  "required": ["id", "name", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the backup task."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable label for the task."
+    },
+    "type": {
+      "type": "string",
+      "description": "Workload type protected by the task.",
+      "enum": ["MS365", "GOOGLE_WORKSPACE", "SALESFORCE", "BOX", "DROPBOX", "SHAREPOINT", "ONEDRIVE"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current backup status (for example, success, failed, in_progress, paused).",
+      "enum": ["success", "failed", "in_progress", "paused", "pending"]
+    },
+    "lastBackup": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp of the most recent successful backup."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time the task was created."
+    },
+    "size": {
+      "type": ["integer", "null"],
+      "description": "Total backed-up data size in bytes for the task."
+    },
+    "schedule": {
+      "type": "object",
+      "description": "Backup schedule configuration.",
+      "properties": {
+        "frequency": {"type": "string", "enum": ["daily", "every_3_hours", "manual"]},
+        "timezone": {"type": "string"}
+      }
+    }
+  },
+  "additionalProperties": true
+}

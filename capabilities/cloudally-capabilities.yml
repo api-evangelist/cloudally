@@ -1,0 +1,38 @@
+capabilities:
+  - id: cloudally.authenticate-partner
+    name: Authenticate as a CloudAlly partner
+    description: >-
+      Exchange a partner Client ID and Client Secret (provisioned in the
+      CloudAlly portal) for an access token used to call partner-scoped
+      endpoints, plus refresh tokens when they expire.
+    apis:
+      - cloudally:cloudally-api
+  - id: cloudally.manage-backup-tasks
+    name: Manage SaaS backup tasks
+    description: >-
+      List, inspect, and monitor backup tasks that protect Microsoft 365,
+      Google Workspace, Salesforce, Box, and Dropbox workloads, including
+      schedule, status, and last-backup timestamp.
+    apis:
+      - cloudally:cloudally-api
+  - id: cloudally.restore-data
+    name: Restore or download backed-up data
+    description: >-
+      Initiate restore-in-place or download requests for protected
+      mailboxes, files, and records, and poll job status until completion.
+    apis:
+      - cloudally:cloudally-api
+  - id: cloudally.manage-partner-portal
+    name: Manage the partner portal
+    description: >-
+      Read partner profile, status, billing data, tasks, and the
+      reseller hierarchy that sits underneath a CloudAlly partner.
+    apis:
+      - cloudally:cloudally-api
+  - id: cloudally.administer-users
+    name: Administer protected users
+    description: >-
+      List and manage end users that the partner administers across
+      protected workloads, supporting bulk user provisioning workflows.
+    apis:
+      - cloudally:cloudally-api

@@ -1,0 +1,37 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "cloudally": "https://api.cloudally.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "BackupTask": {
+      "@id": "cloudally:BackupTask",
+      "@type": "schema:Action"
+    },
+    "RestoreJob": {
+      "@id": "cloudally:RestoreJob",
+      "@type": "schema:Action"
+    },
+    "Partner": {
+      "@id": "cloudally:Partner",
+      "@type": "schema:Organization"
+    },
+    "Reseller": {
+      "@id": "cloudally:Reseller",
+      "@type": "schema:Organization"
+    },
+    "User": {
+      "@id": "cloudally:User",
+      "@type": "schema:Person"
+    },
+
+    "id": "@id",
+    "name": "schema:name",
+    "type": "cloudally:taskType",
+    "status": "schema:actionStatus",
+    "createdAt": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+    "lastBackup": {"@id": "cloudally:lastBackup", "@type": "xsd:dateTime"},
+    "size": {"@id": "schema:contentSize", "@type": "xsd:integer"}
+  }
+}
