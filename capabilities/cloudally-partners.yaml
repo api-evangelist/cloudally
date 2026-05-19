@@ -1,0 +1,262 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CloudAlly API — Partners
+  description: 'CloudAlly API — Partners. 7 operations. Lead operation: Get partner information. Self-contained Naftiko capability
+    covering one Cloudally business surface.'
+  tags:
+  - Cloudally
+  - Partners
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CLOUDALLY_API_KEY: CLOUDALLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloudally-partners
+    baseUri: https://api.cloudally.com
+    description: CloudAlly API — Partners business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-partners
+      path: /v1/partners
+      operations:
+      - name: getpartner
+        method: GET
+        description: Get partner information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-billing
+      path: /v1/partners/billing
+      operations:
+      - name: getpartnerbilling
+        method: GET
+        description: Get partner billing data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-resellers
+      path: /v1/partners/resellers
+      operations:
+      - name: listresellers
+        method: GET
+        description: List partner resellers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-resellers-resellerId
+      path: /v1/partners/resellers/{resellerId}
+      operations:
+      - name: getreseller
+        method: GET
+        description: Get a reseller
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-status
+      path: /v1/partners/status
+      operations:
+      - name: getpartnerstatus
+        method: GET
+        description: Get partner status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-tasks
+      path: /v1/partners/tasks
+      operations:
+      - name: listpartnertasks
+        method: GET
+        description: List partner tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-partners-users
+      path: /v1/partners/users
+      operations:
+      - name: listpartnerusers
+        method: GET
+        description: List users managed by the partner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CLOUDALLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloudally-partners-rest
+    port: 8080
+    description: REST adapter for CloudAlly API — Partners. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/partners
+      name: v1-partners
+      description: REST surface for v1-partners.
+      operations:
+      - method: GET
+        name: getpartner
+        description: Get partner information
+        call: cloudally-partners.getpartner
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/billing
+      name: v1-partners-billing
+      description: REST surface for v1-partners-billing.
+      operations:
+      - method: GET
+        name: getpartnerbilling
+        description: Get partner billing data
+        call: cloudally-partners.getpartnerbilling
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/resellers
+      name: v1-partners-resellers
+      description: REST surface for v1-partners-resellers.
+      operations:
+      - method: GET
+        name: listresellers
+        description: List partner resellers
+        call: cloudally-partners.listresellers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/resellers/{resellerid}
+      name: v1-partners-resellers-resellerid
+      description: REST surface for v1-partners-resellers-resellerId.
+      operations:
+      - method: GET
+        name: getreseller
+        description: Get a reseller
+        call: cloudally-partners.getreseller
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/status
+      name: v1-partners-status
+      description: REST surface for v1-partners-status.
+      operations:
+      - method: GET
+        name: getpartnerstatus
+        description: Get partner status
+        call: cloudally-partners.getpartnerstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/tasks
+      name: v1-partners-tasks
+      description: REST surface for v1-partners-tasks.
+      operations:
+      - method: GET
+        name: listpartnertasks
+        description: List partner tasks
+        call: cloudally-partners.listpartnertasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/partners/users
+      name: v1-partners-users
+      description: REST surface for v1-partners-users.
+      operations:
+      - method: GET
+        name: listpartnerusers
+        description: List users managed by the partner
+        call: cloudally-partners.listpartnerusers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloudally-partners-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CloudAlly API — Partners. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-partner-information
+      description: Get partner information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.getpartner
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-partner-billing-data
+      description: Get partner billing data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.getpartnerbilling
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-partner-resellers
+      description: List partner resellers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.listresellers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-reseller
+      description: Get a reseller
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.getreseller
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-partner-status
+      description: Get partner status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.getpartnerstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-partner-tasks
+      description: List partner tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.listpartnertasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-users-managed-partner
+      description: List users managed by the partner
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-partners.listpartnerusers
+      outputParameters:
+      - type: object
+        mapping: $.

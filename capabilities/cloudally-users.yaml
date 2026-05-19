@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CloudAlly API — Users
+  description: 'CloudAlly API — Users. 1 operations. Lead operation: List users managed by the partner. Self-contained Naftiko
+    capability covering one Cloudally business surface.'
+  tags:
+  - Cloudally
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CLOUDALLY_API_KEY: CLOUDALLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloudally-users
+    baseUri: https://api.cloudally.com
+    description: CloudAlly API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-partners-users
+      path: /v1/partners/users
+      operations:
+      - name: listpartnerusers
+        method: GET
+        description: List users managed by the partner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CLOUDALLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloudally-users-rest
+    port: 8080
+    description: REST adapter for CloudAlly API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/partners/users
+      name: v1-partners-users
+      description: REST surface for v1-partners-users.
+      operations:
+      - method: GET
+        name: listpartnerusers
+        description: List users managed by the partner
+        call: cloudally-users.listpartnerusers
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloudally-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CloudAlly API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-users-managed-partner
+      description: List users managed by the partner
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-users.listpartnerusers
+      outputParameters:
+      - type: object
+        mapping: $.

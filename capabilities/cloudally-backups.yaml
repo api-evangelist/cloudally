@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CloudAlly API — Backups
+  description: 'CloudAlly API — Backups. 2 operations. Lead operation: List backup tasks. Self-contained Naftiko capability
+    covering one Cloudally business surface.'
+  tags:
+  - Cloudally
+  - Backups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CLOUDALLY_API_KEY: CLOUDALLY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: cloudally-backups
+    baseUri: https://api.cloudally.com
+    description: CloudAlly API — Backups business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-backup-tasks
+      path: /v1/backup-tasks
+      operations:
+      - name: listbackuptasks
+        method: GET
+        description: List backup tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-backup-tasks-taskId
+      path: /v1/backup-tasks/{taskId}
+      operations:
+      - name: getbackuptask
+        method: GET
+        description: Get a backup task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CLOUDALLY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: cloudally-backups-rest
+    port: 8080
+    description: REST adapter for CloudAlly API — Backups. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/backup-tasks
+      name: v1-backup-tasks
+      description: REST surface for v1-backup-tasks.
+      operations:
+      - method: GET
+        name: listbackuptasks
+        description: List backup tasks
+        call: cloudally-backups.listbackuptasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/backup-tasks/{taskid}
+      name: v1-backup-tasks-taskid
+      description: REST surface for v1-backup-tasks-taskId.
+      operations:
+      - method: GET
+        name: getbackuptask
+        description: Get a backup task
+        call: cloudally-backups.getbackuptask
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: cloudally-backups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CloudAlly API — Backups. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-backup-tasks
+      description: List backup tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-backups.listbackuptasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-backup-task
+      description: Get a backup task
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: cloudally-backups.getbackuptask
+      outputParameters:
+      - type: object
+        mapping: $.
