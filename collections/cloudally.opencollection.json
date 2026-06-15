@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate a portal user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges email and password credentials for an access token used to call CloudAlly portal APIs."
+        },
+        {
+          "info": {
+            "name": "Authenticate a partner client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth/partner",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges a partner Client ID and Client Secret for an access token used to call partner-scoped CloudAlly APIs."
+        },
+        {
+          "info": {
+            "name": "Refresh an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues a new access token from a refresh token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Partners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get partner information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners"
+          },
+          "docs": "Get partner information"
+        },
+        {
+          "info": {
+            "name": "Get partner billing data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/billing"
+          },
+          "docs": "Get partner billing data"
+        },
+        {
+          "info": {
+            "name": "Get partner status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/status"
+          },
+          "docs": "Get partner status"
+        },
+        {
+          "info": {
+            "name": "List partner tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/tasks"
+          },
+          "docs": "List partner tasks"
+        },
+        {
+          "info": {
+            "name": "List partner resellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/resellers"
+          },
+          "docs": "List partner resellers"
+        },
+        {
+          "info": {
+            "name": "Get a reseller",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/resellers/:resellerId",
+            "params": [
+              {
+                "name": "resellerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a reseller"
+        },
+        {
+          "info": {
+            "name": "List users managed by the partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/users"
+          },
+          "docs": "List users managed by the partner"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Backups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List backup tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/backup-tasks"
+          },
+          "docs": "Returns the backup tasks (one per protected workload) configured for the account."
+        },
+        {
+          "info": {
+            "name": "Get a backup task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/backup-tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a backup task"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Restore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a restore request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/v1/restore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a restore of backed-up data into the source SaaS system or as a download."
+        },
+        {
+          "info": {
+            "name": "Get restore job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/restore/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get restore job status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
