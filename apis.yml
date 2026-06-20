@@ -8,7 +8,7 @@ type: Index
 access: 3rd-Party
 position: Consumer
 kind: company
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Backup
   - Box
@@ -36,7 +36,7 @@ apis:
       - Partner Portal
       - Restore
       - SaaS Backup
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://api.cloudally.com/documentation
     baseURL: https://api.cloudally.com
     properties:
