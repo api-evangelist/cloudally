@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://cybersecurity.opentext.com/legacy/cloudally/
+url: https://cybersecurity.opentext.com/legacy/cloudally/
+certifications:
+- ISO 27001
+- HIPAA
+- GDPR
+evidence:
+- source: https://cybersecurity.opentext.com/legacy/cloudally/
+  keywords:
+  - iso 27001
+  - hipaa
+  - compliance certification
+  - gdpr

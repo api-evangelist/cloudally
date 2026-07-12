@@ -53,6 +53,12 @@ apis:
       profile data, billing, resellers, and user management. The Partner Portal API today is read-oriented (GET), with
       administrative actions performed via the standard tenant endpoints.
 common:
+  - type: TrustCenter
+    url: security/cloudally-trust-center.yml
+  - type: DomainSecurity
+    url: security/cloudally-domain-security.yml
+  - type: Authentication
+    url: authentication/cloudally-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/cloudally
   - type: Website
