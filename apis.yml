@@ -53,6 +53,8 @@ apis:
       profile data, billing, resellers, and user management. The Partner Portal API today is read-oriented (GET), with
       administrative actions performed via the standard tenant endpoints.
 common:
+  - type: AgenticAccess
+    url: agentic-access/cloudally-agentic-access.yml
   - type: TrustCenter
     url: security/cloudally-trust-center.yml
   - type: DomainSecurity
