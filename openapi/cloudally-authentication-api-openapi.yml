@@ -1,0 +1,95 @@
+openapi: 3.1.0
+info:
+  title: CloudAlly Authentication API
+  version: '1'
+  description: CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.
+  contact:
+    name: CloudAlly Support
+    url: https://www.cloudally.com/support/
+  license:
+    name: CloudAlly Terms of Service
+    url: https://www.cloudally.com/terms-of-service/
+servers:
+- url: https://api.cloudally.com
+  description: CloudAlly Production API
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: Token issuance and refresh.
+paths:
+  /auth:
+    post:
+      operationId: login
+      summary: Authenticate a portal user
+      description: Exchanges email and password credentials for an access token used to call CloudAlly portal APIs.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Access token.
+  /auth/partner:
+    post:
+      operationId: partnerLogin
+      summary: Authenticate a partner client
+      description: Exchanges a partner Client ID and Client Secret for an access token used to call partner-scoped CloudAlly APIs.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - clientId
+              - clientSecret
+              properties:
+                clientId:
+                  type: string
+                clientSecret:
+                  type: string
+      responses:
+        '200':
+          description: Access token.
+  /auth/refresh:
+    post:
+      operationId: refreshToken
+      summary: Refresh an access token
+      description: Issues a new access token from a refresh token.
+      tags:
+      - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+      responses:
+        '200':
+          description: Access token.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

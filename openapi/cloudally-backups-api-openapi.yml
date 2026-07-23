@@ -1,0 +1,51 @@
+openapi: 3.1.0
+info:
+  title: CloudAlly Authentication Backups API
+  version: '1'
+  description: CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.
+  contact:
+    name: CloudAlly Support
+    url: https://www.cloudally.com/support/
+  license:
+    name: CloudAlly Terms of Service
+    url: https://www.cloudally.com/terms-of-service/
+servers:
+- url: https://api.cloudally.com
+  description: CloudAlly Production API
+security:
+- bearerAuth: []
+tags:
+- name: Backups
+  description: Backup tasks and status.
+paths:
+  /v1/backup-tasks:
+    get:
+      operationId: listBackupTasks
+      summary: List backup tasks
+      description: Returns the backup tasks (one per protected workload) configured for the account.
+      tags:
+      - Backups
+      responses:
+        '200':
+          description: Backup tasks.
+  /v1/backup-tasks/{taskId}:
+    parameters:
+    - name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getBackupTask
+      summary: Get a backup task
+      tags:
+      - Backups
+      responses:
+        '200':
+          description: Backup task.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

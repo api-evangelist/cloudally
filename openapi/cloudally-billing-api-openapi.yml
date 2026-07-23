@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: CloudAlly Authentication Billing API
+  version: '1'
+  description: CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.
+  contact:
+    name: CloudAlly Support
+    url: https://www.cloudally.com/support/
+  license:
+    name: CloudAlly Terms of Service
+    url: https://www.cloudally.com/terms-of-service/
+servers:
+- url: https://api.cloudally.com
+  description: CloudAlly Production API
+security:
+- bearerAuth: []
+tags:
+- name: Billing
+  description: Billing and invoicing data.
+paths:
+  /v1/partners/billing:
+    get:
+      operationId: getPartnerBilling
+      summary: Get partner billing data
+      tags:
+      - Billing
+      responses:
+        '200':
+          description: Billing data for the authenticated partner.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
