@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: CloudAlly API
+  version: '1'
+  description: >-
+    CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and
+    recovery service that protects Microsoft 365, Google Workspace,
+    Salesforce, Box, and Dropbox data. The CloudAlly REST API lets
+    administrators and partners automate backup-task management,
+    restore/download requests, user provisioning, partner-portal
+    operations, and billing reporting. Partners obtain a Client ID and
+    Client Secret (generated in the portal) and exchange them at the
+    /auth/partner endpoint for an access token; portal users sign in
+    against /auth. Tokens are presented as Authorization Bearer headers,
+    and responses are JSON.
+  contact:
+    name: CloudAlly Support
+    url: https://www.cloudally.com/support/
+  license:
+    name: CloudAlly Terms of Service
+    url: https://www.cloudally.com/terms-of-service/
+servers:
+  - url: https://api.cloudally.com
+    description: CloudAlly Production API
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+    description: Token issuance and refresh.
+  - name: Partners
+    description: Partner-portal account, billing, and reseller endpoints.
+  - name: Users
+    description: User and account management.
+  - name: Backups
+    description: Backup tasks and status.
+  - name: Restore
+    description: Restore and download requests.
+  - name: Billing
+    description: Billing and invoicing data.
+  - name: Tasks
+    description: Long-running task status.
+paths:
+  /auth:
+    post:
+      operationId: login
+      summary: Authenticate a portal user
+      description: Exchanges email and password credentials for an access token used to call CloudAlly portal APIs.
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: {type: string, format: email}
+                password: {type: string, format: password}
+      responses:
+        '200':
+          description: Access token.
+  /auth/partner:
+    post:
+      operationId: partnerLogin
+      summary: Authenticate a partner client
+      description: Exchanges a partner Client ID and Client Secret for an access token used to call partner-scoped CloudAlly APIs.
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [clientId, clientSecret]
+              properties:
+                clientId: {type: string}
+                clientSecret: {type: string}
+      responses:
+        '200':
+          description: Access token.
+  /auth/refresh:
+    post:
+      operationId: refreshToken
+      summary: Refresh an access token
+      description: Issues a new access token from a refresh token.
+      tags: [Authentication]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken: {type: string}
+      responses:
+        '200':
+          description: Access token.
+  /v1/partners:
+    get:
+      operationId: getPartner
+      summary: Get partner information
+      tags: [Partners]
+      responses:
+        '200': {description: Partner profile.}
+  /v1/partners/billing:
+    get:
+      operationId: getPartnerBilling
+      summary: Get partner billing data
+      tags: [Partners, Billing]
+      responses:
+        '200': {description: Billing data for the authenticated partner.}
+  /v1/partners/status:
+    get:
+      operationId: getPartnerStatus
+      summary: Get partner status
+      tags: [Partners]
+      responses:
+        '200': {description: Partner status overview.}
+  /v1/partners/tasks:
+    get:
+      operationId: listPartnerTasks
+      summary: List partner tasks
+      tags: [Partners, Tasks]
+      responses:
+        '200': {description: Tasks managed by the partner.}
+  /v1/partners/resellers:
+    get:
+      operationId: listResellers
+      summary: List partner resellers
+      tags: [Partners]
+      responses:
+        '200': {description: Resellers under the partner.}
+  /v1/partners/resellers/{resellerId}:
+    parameters:
+      - name: resellerId
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      operationId: getReseller
+      summary: Get a reseller
+      tags: [Partners]
+      responses:
+        '200': {description: Reseller details.}
+  /v1/partners/users:
+    get:
+      operationId: listPartnerUsers
+      summary: List users managed by the partner
+      tags: [Partners, Users]
+      responses:
+        '200': {description: Users under the partner.}
+  /v1/backup-tasks:
+    get:
+      operationId: listBackupTasks
+      summary: List backup tasks
+      description: Returns the backup tasks (one per protected workload) configured for the account.
+      tags: [Backups]
+      responses:
+        '200': {description: Backup tasks.}
+  /v1/backup-tasks/{taskId}:
+    parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      operationId: getBackupTask
+      summary: Get a backup task
+      tags: [Backups]
+      responses:
+        '200': {description: Backup task.}
+  /v1/restore:
+    post:
+      operationId: createRestoreRequest
+      summary: Create a restore request
+      description: Initiates a restore of backed-up data into the source SaaS system or as a download.
+      tags: [Restore]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201': {description: Restore job accepted.}
+  /v1/restore/{jobId}:
+    parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema: {type: string}
+    get:
+      operationId: getRestoreStatus
+      summary: Get restore job status
+      tags: [Restore]
+      responses:
+        '200': {description: Restore job status.}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

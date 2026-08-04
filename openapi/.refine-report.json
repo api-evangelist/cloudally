@@ -1,0 +1,26 @@
+{
+  "provider": "cloudally",
+  "sources": [
+    "cloudally-authentication-api-openapi.yml",
+    "cloudally-backups-api-openapi.yml",
+    "cloudally-billing-api-openapi.yml",
+    "cloudally-partners-api-openapi.yml",
+    "cloudally-restore-api-openapi.yml",
+    "cloudally-tasks-api-openapi.yml",
+    "cloudally-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "cloudally-authentication-api-openapi.yml",
+    "cloudally-backups-api-openapi.yml",
+    "cloudally-billing-api-openapi.yml",
+    "cloudally-partners-api-openapi.yml",
+    "cloudally-restore-api-openapi.yml",
+    "cloudally-tasks-api-openapi.yml",
+    "cloudally-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
