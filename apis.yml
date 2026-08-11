@@ -163,7 +163,7 @@ common:
   - type: ParentCompany
     url: https://cybersecurity.opentext.com/legacy/cloudally/
   - type: OpenAPI
-    url: openapi/cloudally-openapi.yml
+    url: openapi/_original/cloudally-openapi.yml
   - type: JSONSchema
     url: json-schema/cloudally-backup-task-schema.json
   - type: JSONLDContext
