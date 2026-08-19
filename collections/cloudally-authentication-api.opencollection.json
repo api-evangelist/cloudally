@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate a portal user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges email and password credentials for an access token used to call CloudAlly portal APIs."
+        },
+        {
+          "info": {
+            "name": "Authenticate a partner client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth/partner",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges a partner Client ID and Client Secret for an access token used to call partner-scoped CloudAlly APIs."
+        },
+        {
+          "info": {
+            "name": "Refresh an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/auth/refresh",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues a new access token from a refresh token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,540 @@
+{
+  "item": [
+    {
+      "id": "dd0461d5-52ae-4819-bd6b-2fd3a56cf39d",
+      "name": "Partners",
+      "description": {
+        "content": "Partner-portal account, billing, and reseller endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a125764-483e-4630-a731-62da0c60c10d",
+          "name": "Get partner information",
+          "request": {
+            "name": "Get partner information",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "891261ab-7d6c-4cbd-8bd9-f61aa3cdc63b",
+              "name": "Partner profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fe4d4ba-38ad-4ead-a5ba-9b1a6f33c709",
+          "name": "Get partner billing data",
+          "request": {
+            "name": "Get partner billing data",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5f47314-0862-4b34-b187-0df4e24557b1",
+              "name": "Billing data for the authenticated partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4249aa64-a1b8-4892-8e44-50bdfab6b7cd",
+          "name": "Get partner status",
+          "request": {
+            "name": "Get partner status",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa965815-3d96-4f65-99ce-95eb66b7113a",
+              "name": "Partner status overview.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c515853a-d97f-496a-91e4-d0b715a31ae7",
+          "name": "List partner tasks",
+          "request": {
+            "name": "List partner tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45a596af-71ca-442c-9b49-36da2a23a504",
+              "name": "Tasks managed by the partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4bae76c-d230-48e7-9765-5fa6ca357fad",
+          "name": "List partner resellers",
+          "request": {
+            "name": "List partner resellers",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "resellers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce060054-d869-4759-92f7-2da35ddac8ad",
+              "name": "Resellers under the partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "resellers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17b81aaa-e47e-4377-9fd7-ec7af20e7433",
+          "name": "Get a reseller",
+          "request": {
+            "name": "Get a reseller",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "resellers",
+                ":resellerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "resellerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fc6e55d-4c42-4913-b385-5373ef6d3260",
+              "name": "Reseller details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "resellers",
+                    ":resellerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "resellerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4a88457-3089-48ad-a887-8f083b4e4a6b",
+          "name": "List users managed by the partner",
+          "request": {
+            "name": "List users managed by the partner",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f038a2ad-9167-41c0-87b6-a953ebed53e0",
+              "name": "Users under the partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloudally.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aa47b8c0-96cc-4e21-b2f2-95ff06f865f1",
+    "name": "CloudAlly Authentication Partners API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.\n\nContact Support:\n Name: CloudAlly Support",
+      "type": "text/plain"
+    }
+  }
+}

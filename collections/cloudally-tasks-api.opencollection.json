@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Tasks API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List partner tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/tasks"
+          },
+          "docs": "List partner tasks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Backups API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Backups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List backup tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/backup-tasks"
+          },
+          "docs": "Returns the backup tasks (one per protected workload) configured for the account."
+        },
+        {
+          "info": {
+            "name": "Get a backup task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/backup-tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a backup task"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

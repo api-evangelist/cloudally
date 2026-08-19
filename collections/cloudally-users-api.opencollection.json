@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Users API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users managed by the partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/users"
+          },
+          "docs": "List users managed by the partner"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

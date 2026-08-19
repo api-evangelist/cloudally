@@ -1,0 +1,110 @@
+{
+  "item": [
+    {
+      "id": "0940c23c-8bfd-4ad0-a1af-18cb38d25e6c",
+      "name": "Tasks",
+      "description": {
+        "content": "Long-running task status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c3d188c-629e-448a-9043-d65aeef351fd",
+          "name": "List partner tasks",
+          "request": {
+            "name": "List partner tasks",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d42d69e4-a7e8-4e37-8d15-c62de0b565a2",
+              "name": "Tasks managed by the partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloudally.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93d55966-8baf-44db-a1c7-b9954d2c8e63",
+    "name": "CloudAlly Authentication Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.\n\nContact Support:\n Name: CloudAlly Support",
+      "type": "text/plain"
+    }
+  }
+}

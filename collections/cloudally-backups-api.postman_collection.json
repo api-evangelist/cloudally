@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "45bb1ebd-5efc-4b83-8ccd-60e693fb5c7e",
+      "name": "Backups",
+      "description": {
+        "content": "Backup tasks and status.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bb6b149-d795-4185-991f-5e26c55b4903",
+          "name": "List backup tasks",
+          "request": {
+            "name": "List backup tasks",
+            "description": {
+              "content": "Returns the backup tasks (one per protected workload) configured for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "backup-tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e50b4d0-b143-405c-9f34-f822b313bf85",
+              "name": "Backup tasks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "backup-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b7a7fc2-75a8-4e52-ad05-0f525272411a",
+          "name": "Get a backup task",
+          "request": {
+            "name": "Get a backup task",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "backup-tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dcebc15f-9ec7-46e4-b411-53cee3389e30",
+              "name": "Backup task.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "backup-tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloudally.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0f344a90-3d60-4238-8b83-94e38427fc36",
+    "name": "CloudAlly Authentication Backups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.\n\nContact Support:\n Name: CloudAlly Support",
+      "type": "text/plain"
+    }
+  }
+}

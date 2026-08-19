@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Billing API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get partner billing data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/billing"
+          },
+          "docs": "Get partner billing data"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

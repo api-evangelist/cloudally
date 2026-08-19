@@ -1,0 +1,318 @@
+{
+  "item": [
+    {
+      "id": "e402d93a-54d1-46f0-9640-aca84b4d7f34",
+      "name": "Authentication",
+      "description": {
+        "content": "Token issuance and refresh.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f4e3dc88-1a15-439c-a8ec-e6f49ea12b03",
+          "name": "Authenticate a portal user",
+          "request": {
+            "name": "Authenticate a portal user",
+            "description": {
+              "content": "Exchanges email and password credentials for an access token used to call CloudAlly portal APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d08c510-6286-44f5-8df2-8fa4c94ce444",
+              "name": "Access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "814f3bcf-9152-4333-a2bc-9256a1e9bcd7",
+          "name": "Authenticate a partner client",
+          "request": {
+            "name": "Authenticate a partner client",
+            "description": {
+              "content": "Exchanges a partner Client ID and Client Secret for an access token used to call partner-scoped CloudAlly APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "partner"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac3d2551-738f-47d3-afba-0555ea560573",
+              "name": "Access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "partner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"clientId\": \"<string>\",\n  \"clientSecret\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c199a568-6cf6-4cef-b683-714c57cde5ff",
+          "name": "Refresh an access token",
+          "request": {
+            "name": "Refresh an access token",
+            "description": {
+              "content": "Issues a new access token from a refresh token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "refresh"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b100dc50-f3a7-4f5c-a1da-482fbb2b78ca",
+              "name": "Access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "refresh"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refreshToken\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloudally.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "756382db-7680-4d90-8e1c-00294de64471",
+    "name": "CloudAlly Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.\n\nContact Support:\n Name: CloudAlly Support",
+      "type": "text/plain"
+    }
+  }
+}

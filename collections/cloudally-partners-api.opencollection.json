@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Partners API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partners",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get partner information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners"
+          },
+          "docs": "Get partner information"
+        },
+        {
+          "info": {
+            "name": "Get partner billing data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/billing"
+          },
+          "docs": "Get partner billing data"
+        },
+        {
+          "info": {
+            "name": "Get partner status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/status"
+          },
+          "docs": "Get partner status"
+        },
+        {
+          "info": {
+            "name": "List partner tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/tasks"
+          },
+          "docs": "List partner tasks"
+        },
+        {
+          "info": {
+            "name": "List partner resellers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/resellers"
+          },
+          "docs": "List partner resellers"
+        },
+        {
+          "info": {
+            "name": "Get a reseller",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/resellers/:resellerId",
+            "params": [
+              {
+                "name": "resellerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a reseller"
+        },
+        {
+          "info": {
+            "name": "List users managed by the partner",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/partners/users"
+          },
+          "docs": "List users managed by the partner"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

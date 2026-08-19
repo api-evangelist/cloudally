@@ -1,0 +1,110 @@
+{
+  "item": [
+    {
+      "id": "d11ee18f-5760-4ef5-81c1-79ea857b4d64",
+      "name": "Billing",
+      "description": {
+        "content": "Billing and invoicing data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c10bb3f-6cbd-4a94-83f7-3e5b2f14fa11",
+          "name": "Get partner billing data",
+          "request": {
+            "name": "Get partner billing data",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "partners",
+                "billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "965b11e6-3b00-409f-8191-3ea53d7a45a8",
+              "name": "Billing data for the authenticated partner.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "partners",
+                    "billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cloudally.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fe961ab1-5a6b-4138-9849-e343c26c5864",
+    "name": "CloudAlly Authentication Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects Microsoft 365, Google Workspace, Salesforce, Box, and Dropbox data. The CloudAlly REST API lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting. Partners obtain a Client ID and Client Secret (generated in the portal) and exchange them at the /auth/partner endpoint for an access token; portal users sign in against /auth. Tokens are presented as Authorization Bearer headers, and responses are JSON.\n\nContact Support:\n Name: CloudAlly Support",
+      "type": "text/plain"
+    }
+  }
+}

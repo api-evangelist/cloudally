@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CloudAlly Authentication Restore API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Restore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a restore request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cloudally.com/v1/restore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a restore of backed-up data into the source SaaS system or as a download."
+        },
+        {
+          "info": {
+            "name": "Get restore job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cloudally.com/v1/restore/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get restore job status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
