@@ -29,6 +29,17 @@ tags:
   - Disaster Recovery
   - Dropbox
   - Google Workspace
+  - Microsoft-365
+  - OpenText
+  - SaaS Backup
+  - Salesforce
+tags_raw:
+  - Backup
+  - Box
+  - Data Protection
+  - Disaster Recovery
+  - Dropbox
+  - Google Workspace
   - Microsoft 365
   - OpenText
   - SaaS Backup
@@ -117,6 +128,8 @@ apis:
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -131,6 +144,8 @@ apis:
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
