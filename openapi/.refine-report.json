@@ -1,13 +1,7 @@
 {
   "provider": "cloudally",
   "sources": [
-    "cloudally-authentication-api-openapi.yml",
-    "cloudally-backups-api-openapi.yml",
-    "cloudally-billing-api-openapi.yml",
-    "cloudally-partners-api-openapi.yml",
-    "cloudally-restore-api-openapi.yml",
-    "cloudally-tasks-api-openapi.yml",
-    "cloudally-users-api-openapi.yml"
+    "_original/cloudally-openapi.yml"
   ],
   "outputs": [
     "cloudally-authentication-api-openapi.yml",
@@ -22,14 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "cloudally-authentication-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-backups-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-billing-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-partners-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-restore-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-tasks-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "cloudally-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cloudally-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "cloudally-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-backups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-partners-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-restore-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cloudally-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
