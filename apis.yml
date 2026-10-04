@@ -173,6 +173,9 @@ apis:
   - type: Support
     url: https://support.cloudally.com/
 common:
+  - type: CapabilityMap
+    url: capabilities/cloudally-capability-edges.yml
+    name: CloudAlly Business Capability Map
   - type: AgenticAccess
     url: agentic-access/cloudally-agentic-access.yml
   - type: TrustCenter
