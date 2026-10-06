@@ -29,7 +29,7 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 created: '2026-03-27'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 type: Index
 access: 3rd-Party
@@ -173,6 +173,8 @@ apis:
   - type: Support
     url: https://support.cloudally.com/
 common:
+  - url: https://cybersecurity.opentext.com/blog/
+    type: Blog
   - type: CapabilityMap
     url: capabilities/cloudally-capability-edges.yml
     name: CloudAlly Business Capability Map
