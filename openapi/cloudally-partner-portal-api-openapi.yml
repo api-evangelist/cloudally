@@ -1,0 +1,3788 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST Partner Portal API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: Partner Portal
+  description: Endpoint for partner related requests.
+paths:
+  /v2/distributors/resellers/{resellerId}:
+    get:
+      tags:
+      - Partner Portal
+      summary: get reseller by resellerId
+      description: Returns reseller by partnerId
+      operationId: getResellerById
+      parameters:
+      - name: resellerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResellerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    put:
+      tags:
+      - Partner Portal
+      summary: update reseller
+      description: update a reseller
+      operationId: updateReseller
+      parameters:
+      - name: resellerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResellerUpdateDto'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResellerUpdateResponse'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners/resellers/{partnerId}:
+    get:
+      tags:
+      - Partner Portal
+      summary: get reseller by partnerId
+      description: Returns reseller by partnerId
+      operationId: getResellerById_1
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResellerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    put:
+      tags:
+      - Partner Portal
+      summary: update reseller
+      description: update a reseller
+      operationId: updateReseller_1
+      parameters:
+      - name: partnerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResellerUpdateDto'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResellerUpdateResponse'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/users:
+    post:
+      tags:
+      - Partner Portal
+      summary: createResellerUser
+      description: Create a secondary user under the reseller. Use role='administrator' for full permissions or role='custom' with a permissions block. Set accessType='all' for access to all accounts, or 'custom' with accountIds for specific accounts.
+      operationId: createPartnerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomRoleUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/accounts:
+    get:
+      tags:
+      - Partner Portal
+      summary: getUsersByReseller
+      description: Get all users belonging to the partner.
+      operationId: getUsersByPartner
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - Partner Portal
+      summary: addAccount
+      description: Create a Cloudally account (trial status).
+      operationId: addAccount
+      parameters:
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePartnerAccountForResellerDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/accounts/{id}/partner-access-token:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInTokenForPartner
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token for partner
+      x-summary-source: derived
+  /v2/resellers/accounts/{id}/access-token:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInToken
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token
+      x-summary-source: derived
+  /v2/distributors/users:
+    post:
+      tags:
+      - Partner Portal
+      summary: createPartnerUser
+      description: Create a secondary partner under a specific reseller. Use role='administrator' for full permissions or role='custom' with a permissions block. Set accessType='all' for access to all accounts, or 'custom' with accountIds for specific accounts.
+      operationId: createPartnerUser_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomRoleUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers:
+    get:
+      tags:
+      - Partner Portal
+      summary: get resellers list
+      description: Returns list of current distributor's resellers
+      operationId: getResellers
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListResellerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - Partner Portal
+      summary: create reseller
+      description: Create a reseller
+      operationId: createReseller
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V2ResellerInfoDto'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/V2ResellerCreateResponse'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/{resellerId}/users:
+    post:
+      tags:
+      - Partner Portal
+      summary: createResellerUser
+      description: Create a secondary user under a specific reseller. Use role='administrator' for full permissions or role='custom' with a permissions block. Set accessType='all' for access to all accounts, or 'custom' with accountIds for specific accounts.
+      operationId: createResellerUser
+      parameters:
+      - name: resellerId
+        in: path
+        description: Partner ID of the reseller under which the user will be created
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomRoleUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/{resellerId}/accounts:
+    get:
+      tags:
+      - Partner Portal
+      operationId: getAllAccountsUnderReseller
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Get all accounts under reseller
+      x-summary-source: derived
+    post:
+      tags:
+      - Partner Portal
+      summary: addAccount
+      description: Create a Cloudally account (trial status).
+      operationId: addAccount_1
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePartnerAccountForResellerDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts:
+    get:
+      tags:
+      - Partner Portal
+      summary: getUsersByDistributors
+      description: Get all users belonging to the partner.
+      operationId: getUsersByPartner_1
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - Partner Portal
+      summary: addAccount
+      description: Create a Cloudally account (trial status).
+      operationId: addAccount_2
+      parameters:
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePartnerAccountDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{id}/partner-access-token:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInTokenForPartner_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token for partner 1
+      x-summary-source: derived
+  /v2/distributors/accounts/{id}/access-token:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInToken_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token 1
+      x-summary-source: derived
+  /v1/partners/users:
+    get:
+      tags:
+      - Partner Portal
+      summary: getUsersByPartner
+      description: Get all users belonging to the partner.
+      operationId: getUsersByPartner_2
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - Partner Portal
+      summary: addAccount
+      description: Create a Cloudally account (trial status).
+      operationId: addAccount_3
+      parameters:
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePartnerAccountDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners/users/{id}/partnerAccessToken:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInTokenForParner
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token for parner
+      x-summary-source: derived
+  /v1/partners/users/{id}/accessToken:
+    post:
+      tags:
+      - Partner Portal
+      operationId: createSignInToken_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessTokenView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Create sign in token 2
+      x-summary-source: derived
+  /v1/partners/resellers:
+    get:
+      tags:
+      - Partner Portal
+      summary: get resellers list
+      description: Returns list of current distributor's resellers
+      operationId: getResellers_1
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListResellerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - Partner Portal
+      summary: create reseller
+      description: Create a reseller
+      operationId: createResellerCom
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResellerInfoDto'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResellerCreateResponse'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/details:
+    get:
+      tags:
+      - Partner Portal
+      summary: getResellerDetails
+      description: Returns partner details
+      operationId: getPartner
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/bills:
+    get:
+      tags:
+      - Partner Portal
+      operationId: billings
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListBillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Billings
+      x-summary-source: derived
+  /v2/resellers/accounts/backup-tasks:
+    get:
+      tags:
+      - Partner Portal
+      operationId: tasks
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionPartnerTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Tasks
+      x-summary-source: derived
+  /v2/resellers/accounts/backup-statuses:
+    get:
+      tags:
+      - Partner Portal
+      summary: getStatusByPartnerID
+      description: Get all active backup statuses.
+      operationId: getStatusByPartnerID
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListV2EntityStatusDirectView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/{resellerId}/bills:
+    get:
+      tags:
+      - Partner Portal
+      operationId: billings_1
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListBillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Billings 1
+      x-summary-source: derived
+  /v2/distributors/resellers/{resellerId}/accounts/backup-tasks:
+    get:
+      tags:
+      - Partner Portal
+      operationId: tasks_1
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionPartnerTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Tasks 1
+      x-summary-source: derived
+  /v2/distributors/resellers/{resellerId}/accounts/backup-statuses:
+    get:
+      tags:
+      - Partner Portal
+      summary: getStatusByPartnerID
+      description: Get all active backup statuses.
+      operationId: getStatusByPartnerID_1
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListV2EntityStatusDirectView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/bills:
+    get:
+      tags:
+      - Partner Portal
+      summary: getBillsForAllResellers
+      description: Get bills for all resellers
+      operationId: getAllUsersBillsForResellerUnderDistributor
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListV2BillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/accounts:
+    get:
+      tags:
+      - Partner Portal
+      operationId: getAllUsersForResellerUnderDistributor
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListUserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Get all users for reseller under distributor
+      x-summary-source: derived
+  /v2/distributors/resellers/accounts/backup-tasks:
+    get:
+      tags:
+      - Partner Portal
+      summary: getBackupTasksForAllResellers
+      description: Get backup tasks for all resellers
+      operationId: getAllUsersBackupTasksForResellerUnderDistributor
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionV2PartnerTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/accounts/backup-statuses:
+    get:
+      tags:
+      - Partner Portal
+      summary: getBackupStatusForAllResellers
+      description: Get backup status for all resellers
+      operationId: getAllUsersBackupTaskStatusForResellerUnderDistributor
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListV2EntityStatus3TierView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/details:
+    get:
+      tags:
+      - Partner Portal
+      summary: getDistributorDetails
+      description: Returns partner details
+      operationId: getPartner_1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/bills:
+    get:
+      tags:
+      - Partner Portal
+      operationId: billings_2
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListBillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Billings 2
+      x-summary-source: derived
+  /v2/distributors/accounts/backup-tasks:
+    get:
+      tags:
+      - Partner Portal
+      operationId: tasks_2
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionPartnerTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Tasks 2
+      x-summary-source: derived
+  /v2/distributors/accounts/backup-statuses:
+    get:
+      tags:
+      - Partner Portal
+      summary: getStatusByPartnerID
+      description: Get all active backup statuses.
+      operationId: getStatusByPartnerID_2
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListV2EntityStatusDirectView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners:
+    get:
+      tags:
+      - Partner Portal
+      summary: getPartner
+      description: Returns partner details
+      operationId: getPartner_2
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PartnerView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners/tasks:
+    get:
+      tags:
+      - Partner Portal
+      operationId: tasks_3
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionPartnerTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Tasks 3
+      x-summary-source: derived
+  /v1/partners/status:
+    get:
+      tags:
+      - Partner Portal
+      summary: getStatusByPartnerID
+      description: Get all active backup statuses.
+      operationId: getStatusByPartnerID_3
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListEntityStatusView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners/bills:
+    get:
+      tags:
+      - Partner Portal
+      operationId: billings_3
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewListBillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Billings 3
+      x-summary-source: derived
+  /v2/resellers/users/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: deleteResellerUser
+      description: Delete a secondary user from a reseller.
+      operationId: deleteResellerUser
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the user to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/accounts/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: unsubscribeAccount
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: unsubscribeAccount
+      parameters:
+      - name: client-id
+        in: header
+        description: API client Id
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Account Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/users/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: deletePartnerUser
+      description: Delete a secondary user from a partner.
+      operationId: deleteResellerUser_1
+      parameters:
+      - name: id
+        in: path
+        description: The ID of the user to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/{resellerId}/users/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: deleteResellerUser
+      description: Delete a secondary user from a reseller.
+      operationId: deleteResellerUser_2
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller partner ID
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: The ID of the user to delete
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/resellers/{resellerId}/accounts/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: unsubscribeAccount
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: unsubscribeAccount_1
+      parameters:
+      - name: resellerId
+        in: path
+        description: Reseller Id
+        required: true
+        schema:
+          type: string
+      - name: client-id
+        in: header
+        description: API client Id
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Account Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: unsubscribeAccount
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: unsubscribeAccount_2
+      parameters:
+      - name: client-id
+        in: header
+        description: API client Id
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Account Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/partners/users/{id}:
+    delete:
+      tags:
+      - Partner Portal
+      summary: unsubscribeAccount
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: unsubscribeAccount_3
+      parameters:
+      - name: client-id
+        in: header
+        description: API client Id
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Account Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+components:
+  schemas:
+    AccessibleAccountsDTO:
+      type: object
+      description: Defines the set of accounts the user is allowed to access
+      properties:
+        accessType:
+          type: string
+          description: Access type. Use 'custom' to restrict access to the listed accountIds, or 'all' to grant access to all accounts
+          example: custom
+          minLength: 1
+          pattern: (?i)all|custom
+        accountIds:
+          type: array
+          description: List of account UUIDs the user can access (relevant when accessType is 'custom')
+          example:
+          - 123d1dcf-e845-4756-9654-adbe014d1aaa
+          items:
+            type: string
+      required:
+      - accessType
+    CreateCustomRoleUserDTO:
+      type: object
+      description: Request body for creating a partner user with a custom role
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email address
+          example: user@example.com
+          minLength: 1
+        password:
+          type: string
+          description: User password
+          example: P@ssw0rd!
+          minLength: 1
+        role:
+          type: string
+          description: User role. Use 'custom' to apply the fine-grained permissions block. Use role='administrator' for full permissions or role='custom' with a permissions block
+          example: custom
+          minLength: 1
+          pattern: (?i)administrator|custom
+        permissions:
+          $ref: '#/components/schemas/PermissionsDTO'
+          description: Fine-grained permission settings for the user
+        accessibleAccounts:
+          $ref: '#/components/schemas/AccessibleAccountsDTO'
+          description: Defines which accounts the user can access
+      required:
+      - accessibleAccounts
+      - email
+      - password
+      - role
+    V2BillingDetailsView:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        discount:
+          type: number
+          format: double
+        currency:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        paymentType:
+          type: string
+          enum:
+          - MONTHLY
+          - ANNUAL
+        nextPaymentDate:
+          type: string
+          format: date-time
+        subscribed:
+          type: boolean
+        total:
+          type: number
+          format: double
+        trialDaysLeft:
+          type: integer
+          format: int32
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingLinesView'
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+        partnerId:
+          type: string
+    PartnerView:
+      type: object
+      properties:
+        partnerId:
+          type: string
+          description: Partner ID
+        email:
+          type: string
+          description: Partner account email
+        contactName:
+          type: string
+          description: Contact person name
+        discount:
+          type: integer
+          format: int32
+          description: Discount for the partner
+        phone:
+          type: string
+          description: Contact person phone
+        currency:
+          type: string
+          description: Currency used for billing
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        address:
+          type: string
+          description: Partner address
+        region:
+          type: string
+          description: Datacenter region
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+    ResellerUpdateResponse:
+      type: object
+      description: ResellerUpdateResponse
+      properties:
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+      required:
+      - countryCode
+      - resellerName
+    PageableResponseViewListUserView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/UserView'
+    EntityStatusView:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        taskId:
+          type: string
+          description: Task ID
+        source:
+          type: string
+          description: Service internal type
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        entityName:
+          type: string
+          description: Account email
+        lastBackupDate:
+          type: string
+          description: The date of the last successful backup
+        lastBackupAttemptDate:
+          type: string
+          description: 'The date when the last backup tried to execute. Normally it should be equal to LastBackupDate,
+
+            if not, i.e. LastBackupTryDate &gt; LastBackupDate =&gt;  it is a signal that the backup task failed'
+        backupDuration:
+          type: integer
+          format: int64
+          description: Last backup duration (in ms)
+        size:
+          type: integer
+          format: int64
+          description: The amount of uncompressed data stored in our storage in bytes. This information could be used to bill the clients for services where we charge based on storage amount
+        backupStatus:
+          type: array
+          description: Backup statuses
+          items:
+            $ref: '#/components/schemas/BackupStatusView'
+    V2ResellerCreateResponse:
+      type: object
+      properties:
+        partnerId:
+          type: string
+          description: Reseller Partner Id
+          example: PID0002
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        resellerEmail:
+          type: string
+          description: Reseller’s partner portal login e-mail
+          example: reseller@cloudally.com
+        region:
+          type: string
+          description: Default data center for reseller’s accounts
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        customStorage:
+          $ref: '#/components/schemas/CustomStorageView'
+          description: Cloud storage type
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+        sendWelcomeEmail:
+          type: boolean
+          default: false
+          description: Defines whether to send a "Welcome" email to the new reseller or not
+        externalId:
+          type: string
+          description: Identifier from an external system, used to reference the reseller in third-party platforms
+          example: SKY-123456789ABC12345
+      required:
+      - countryCode
+      - region
+      - resellerEmail
+      - resellerName
+    TaskProgressView:
+      type: object
+      properties:
+        current:
+          type: integer
+          format: int32
+          description: The number of processed items at the moment
+        state:
+          type: string
+          description: State of the backup process
+          enum:
+          - PREPARE
+          - BACKUP
+          - FINALIZE
+        service:
+          type: string
+          description: Service name
+        cancelled:
+          type: boolean
+    ResellerCreateResponse:
+      type: object
+      description: ResellerResponse
+      properties:
+        partnerId:
+          type: string
+          description: Reseller Partner Id
+          example: PID0002
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        resellerEmail:
+          type: string
+          description: Reseller’s partner portal login e-mail
+          example: reseller@cloudally.com
+        region:
+          type: string
+          description: Default data center for reseller’s accounts
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        customStorage:
+          $ref: '#/components/schemas/CustomStorageView'
+          description: Cloud storage type
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+      required:
+      - countryCode
+      - region
+      - resellerEmail
+      - resellerName
+    PermissionsDTO:
+      type: object
+      description: Permission groups for the user
+      properties:
+        partnerPortalOperations:
+          $ref: '#/components/schemas/PartnerPortalOperationsDTO'
+          description: Permissions available inside the Partner Portal
+        accountOperations:
+          $ref: '#/components/schemas/AccountOperationsDTO'
+          description: Permissions related to account-level backup operations
+        enabledServices:
+          $ref: '#/components/schemas/EnabledServicesDTO'
+          description: Cloud services that are enabled for the user
+    ResellerInfoDto:
+      type: object
+      description: Reseller
+      properties:
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+          minLength: 1
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        resellerEmail:
+          type: string
+          format: email
+          description: Reseller’s partner portal login e-mail
+          example: reseller@cloudally.com
+          minLength: 1
+        resellerPassword:
+          type: string
+          description: Password of reseller account
+          pattern: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.)*$
+        region:
+          type: string
+          description: Default data center for reseller’s accounts
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        customStorage:
+          $ref: '#/components/schemas/CustomStorage'
+          description: Custom storage configuration, by default distributor's config
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+      required:
+      - countryCode
+      - region
+      - resellerEmail
+      - resellerName
+    CustomStorage:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Cloud storage type
+          enum:
+          - S3
+          - S3_COMPATIBLE
+          - GCP
+          - AZURE
+          - DISTRIBUTOR_CLOUD
+        s3Key:
+          type: string
+          description: Amazon S3 account key
+        s3Secret:
+          type: string
+          description: Amazon S3 account secret
+        s3Region:
+          type: string
+          description: Amazon S3 region
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        s3Bucket:
+          type: string
+          description: Amazon S3 bucket name
+        endPoint:
+          type: string
+          description: Amazon S3 compatible endpoint
+    EnabledServicesDTO:
+      type: object
+      description: Cloud services enabled for the user
+      properties:
+        exchange:
+          type: boolean
+          description: Microsoft Exchange backup enabled
+          example: true
+        msGroupsTeams:
+          type: boolean
+          description: Microsoft Groups & Teams backup enabled
+          example: true
+        sharepoint:
+          type: boolean
+          description: Microsoft SharePoint backup enabled
+          example: true
+        onedrive:
+          type: boolean
+          description: Microsoft OneDrive backup enabled
+          example: true
+        salesforce:
+          type: boolean
+          description: Salesforce backup enabled
+          example: true
+        dropbox:
+          type: boolean
+          description: Dropbox backup enabled
+          example: true
+        box:
+          type: boolean
+          description: Box backup enabled
+          example: true
+        googleWorkspace:
+          type: boolean
+          description: Google Workspace backup enabled
+          example: true
+        googleSharedDrives:
+          type: boolean
+          description: Google Shared Drives backup enabled
+          example: true
+    PageableResponseViewListResellerView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/ResellerView'
+    BillingLinesView:
+      type: object
+      properties:
+        price:
+          type: number
+          format: double
+        accounts:
+          type: integer
+          format: int32
+        seat:
+          type: integer
+          format: int32
+        service:
+          type: string
+        type:
+          type: string
+          enum:
+          - BACKUP
+          - RESTORE
+          - EXPORT
+        source:
+          type: string
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        storage:
+          type: integer
+          format: int64
+        total:
+          type: number
+          format: double
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        description:
+          type: string
+        currencyType:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+    CustomStorageView:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - S3
+          - S3_COMPATIBLE
+          - GCP
+          - AZURE
+          - DISTRIBUTOR_CLOUD
+    V2ResellerInfoDto:
+      type: object
+      properties:
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+          minLength: 1
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        resellerEmail:
+          type: string
+          format: email
+          description: Reseller’s partner portal login e-mail
+          example: reseller@cloudally.com
+          minLength: 1
+        resellerPassword:
+          type: string
+          description: Password of reseller account
+          pattern: ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(.)*$
+        region:
+          type: string
+          description: Default data center for reseller’s accounts
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        customStorage:
+          $ref: '#/components/schemas/CustomStorage'
+          description: Custom storage configuration, by default distributor's config
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+        sendWelcomeEmail:
+          type: boolean
+          default: false
+          description: Defines whether to send a "Welcome" email to the new reseller or not
+        externalId:
+          type: string
+          description: Identifier from an external system, used to reference the reseller in third-party platforms
+          example: SKY-123456789ABC12345
+          pattern: ^[a-zA-Z0-9\-]{20,36}$
+      required:
+      - countryCode
+      - region
+      - resellerEmail
+      - resellerName
+    UserView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account access level
+        name:
+          type: string
+          description: Account friendly name
+        email:
+          type: string
+          description: Account email
+        status:
+          type: string
+          description: Account status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - BLOCKED
+          - DELETED
+          - TRIAL
+          - UNSUBSCRIBED
+        date:
+          type: integer
+          format: int32
+          description: Subscription date
+        dailyReport:
+          type: boolean
+          description: Toggle send daily report
+        region:
+          type: string
+          description: Account data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        discount:
+          type: integer
+          format: int32
+          description: Account discount
+        reportEmails:
+          type: array
+          description: Email list to send reports to
+          items:
+            type: string
+        partnerID:
+          type: string
+          description: Account partner ID
+        currency:
+          type: string
+          description: Account billing currency
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        customStorage:
+          $ref: '#/components/schemas/CustomStorageView'
+          description: Custom cloud storage
+        ms365EnterprisePlan:
+          type: boolean
+          description: MS 365 Bundle plan
+        gsuiteEnterprisePlan:
+          type: boolean
+          description: Google Workspace Bundle plan
+        externalId:
+          type: string
+          description: External ID of the user
+    V2PartnerTaskView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+        account:
+          type: string
+          description: Account name
+        type:
+          type: string
+          description: Task type
+          enum:
+          - BACKUP
+          - RESTORE
+          - DEACTIVATEUSER
+          - DELETEACCOUNTDATA
+          - FINISHEDACK
+          - TERMINATE_MACHINE
+          - EXPORT
+          - MIGRATE
+          - DELETEINDEXDATA
+          - INDEX
+          - DELETEITEMS
+          - COMPARISON
+          - EXPORTACTIVITY
+          - PP_EXPORTACTIVITY
+        source:
+          type: string
+          description: Service name
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        userId:
+          type: string
+        domain:
+          type: string
+          description: Domain name (SimpleDB, DynamoDB)
+        status:
+          type: string
+          description: Task status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - IN_ANOTHER
+          - PENDING
+          - PAUSED
+          - ON_PREMISE
+          - SKIPPED
+          - DISPATCHED
+          - QUEUED
+          - INPROCESS
+          - ARCHIVED
+        region:
+          type: string
+          description: Data center (SimpleDB, DynamoDB)
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        alias:
+          type: string
+          description: Friendly name
+        backupTaskId:
+          type: string
+          description: Backup task ID
+        index:
+          type: boolean
+          description: Index flag
+        snapshotDate:
+          type: integer
+          format: int64
+          description: Snapshot date (yyyyMMddHHmmss)
+        lastBackupDates:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+          description: Last successful backup dates table per each sub-sourse (mail, calendar, tasks, etc.) (yyyyMMddHHmmss)
+        nextBackup:
+          type: string
+          description: Schedule for the next backup
+        progress:
+          $ref: '#/components/schemas/TaskProgressView'
+          description: Task current progress
+        size:
+          type: integer
+          format: int64
+          description: Backup size (bytes)
+        createDate:
+          type: string
+          format: date-time
+          description: Date and time when this task was created.
+        numOfBilledEntities:
+          type: integer
+          format: int32
+          description: Number of billed entities
+        numOfEntities:
+          type: integer
+          format: int32
+          description: Total number of entities
+        userEmail:
+          type: string
+        partnerId:
+          type: string
+        multiEntitiesTask:
+          type: boolean
+    AccessDeniedError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 403
+        error:
+          type: string
+          example: Forbidden
+        path:
+          type: string
+          example: /v2/user/bills
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-11-28T06:29:14.100Z'
+    PartnerUserView:
+      type: object
+      description: Created secondary partner user details
+      properties:
+        id:
+          type: string
+          description: Unique internal ID of the secondary user
+        email:
+          type: string
+          description: Email address of the secondary user
+          example: user@example.com
+        role:
+          type: string
+          description: Role assigned to the secondary user
+          example: custom
+        partnerId:
+          type: string
+          description: Partner ID of the distributor or reseller this user belongs to
+        accessibleAccounts:
+          type: string
+          description: Accessible accounts for the secondary user, can be all or custom
+    BackupStatusView:
+      type: object
+      properties:
+        subSource:
+          type: string
+          description: Service sub-type (mail, tasks, calendar, etc.)
+        status:
+          type: string
+          description: Task status
+        error:
+          type: string
+          description: Short meaningful error
+        errFAQLink:
+          type: string
+          description: Link of error to FAQ page
+    JsonResponseDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: A flag indicating a successful response
+        status:
+          type: string
+          description: Response status description
+        statusCode:
+          type: integer
+          format: int32
+          description: Response return code
+    PageableResponseViewListBillingDetailsView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/BillingDetailsView'
+    PageableResponseViewListV2EntityStatus3TierView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/V2EntityStatus3TierView'
+    AccountOperationsDTO:
+      type: object
+      description: Account-level backup operation permissions
+      properties:
+        viewAccountSettingsPage:
+          type: boolean
+          description: Can view the Account Settings page
+          example: true
+        viewAccountBillingPage:
+          type: boolean
+          description: Can view the Account Billing page
+          example: true
+        viewSupportPage:
+          type: boolean
+          description: Can view the Support page
+          example: true
+        viewAccountActivity:
+          type: boolean
+          description: Can view Account Activity
+          example: true
+        viewAccountSecurityAuditPage:
+          type: boolean
+          description: Can view the Account Security Audit page
+          example: true
+        manageAccountNotifications:
+          type: boolean
+          description: Can manage Account notifications
+          example: true
+        viewBackupsPage:
+          type: boolean
+          description: Can view the Backups page
+          example: true
+        activateNewBackupTasks:
+          type: boolean
+          description: Can activate new backup tasks
+          example: true
+        modifyBackupTasks:
+          type: boolean
+          description: Can modify existing backup tasks
+          example: true
+        deleteBackupTasks:
+          type: boolean
+          description: Can delete backup tasks
+          example: true
+        pauseBackupTasks:
+          type: boolean
+          description: Can pause backup tasks
+          example: true
+        executeBackupTasks:
+          type: boolean
+          description: Can execute (run now) backup tasks
+          example: true
+        cancelBackupTasks:
+          type: boolean
+          description: Can cancel running backup tasks
+          example: true
+        viewBackupTasks:
+          type: boolean
+          description: Can view backup tasks
+          example: true
+        previewBackedUpData:
+          type: boolean
+          description: Can preview backed-up data
+          example: true
+        restoreBackups:
+          type: boolean
+          description: Can restore backups
+          example: true
+        exportBackups:
+          type: boolean
+          description: Can export backups
+          example: true
+        deleteBackupItemsGDPR:
+          type: boolean
+          description: Can delete backup items under GDPR requests
+          example: true
+    V2EntityStatus3TierView:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        taskId:
+          type: string
+          description: Task ID
+        source:
+          type: string
+          description: Service internal type
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        entityName:
+          type: string
+          description: Account email
+        lastBackupDate:
+          type: string
+          description: The date of the last successful backup
+        lastBackupAttemptDate:
+          type: string
+          description: 'The date when the last backup tried to execute. Normally it should be equal to LastBackupDate,
+
+            if not, i.e. LastBackupTryDate &gt; LastBackupDate =&gt;  it is a signal that the backup task failed'
+        backupDuration:
+          type: integer
+          format: int64
+          description: Last backup duration (in ms)
+        size:
+          type: integer
+          format: int64
+          description: The amount of uncompressed data stored in our storage in bytes. This information could be used to bill the clients for services where we charge based on storage amount
+        backupStatus:
+          type: array
+          description: Backup statuses
+          items:
+            $ref: '#/components/schemas/BackupStatusView'
+        msLicensing:
+          type: string
+          description: Whether the Exchange mailbox has a Microsoft license or is unlicensed
+          enum:
+          - LICENSED
+          - UNLICENSED
+          - NA
+        partnerId:
+          type: string
+          description: Partner ID
+    PartnerTaskView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+        account:
+          type: string
+          description: Account name
+        type:
+          type: string
+          description: Task type
+          enum:
+          - BACKUP
+          - RESTORE
+          - DEACTIVATEUSER
+          - DELETEACCOUNTDATA
+          - FINISHEDACK
+          - TERMINATE_MACHINE
+          - EXPORT
+          - MIGRATE
+          - DELETEINDEXDATA
+          - INDEX
+          - DELETEITEMS
+          - COMPARISON
+          - EXPORTACTIVITY
+          - PP_EXPORTACTIVITY
+        source:
+          type: string
+          description: Service name
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        userId:
+          type: string
+        domain:
+          type: string
+          description: Domain name (SimpleDB, DynamoDB)
+        status:
+          type: string
+          description: Task status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - IN_ANOTHER
+          - PENDING
+          - PAUSED
+          - ON_PREMISE
+          - SKIPPED
+          - DISPATCHED
+          - QUEUED
+          - INPROCESS
+          - ARCHIVED
+        region:
+          type: string
+          description: Data center (SimpleDB, DynamoDB)
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        alias:
+          type: string
+          description: Friendly name
+        backupTaskId:
+          type: string
+          description: Backup task ID
+        index:
+          type: boolean
+          description: Index flag
+        snapshotDate:
+          type: integer
+          format: int64
+          description: Snapshot date (yyyyMMddHHmmss)
+        lastBackupDates:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+          description: Last successful backup dates table per each sub-sourse (mail, calendar, tasks, etc.) (yyyyMMddHHmmss)
+        nextBackup:
+          type: string
+          description: Schedule for the next backup
+        progress:
+          $ref: '#/components/schemas/TaskProgressView'
+          description: Task current progress
+        size:
+          type: integer
+          format: int64
+          description: Backup size (bytes)
+        createDate:
+          type: string
+          format: date-time
+          description: Date and time when this task was created.
+        numOfBilledEntities:
+          type: integer
+          format: int32
+          description: Number of billed entities
+        numOfEntities:
+          type: integer
+          format: int32
+          description: Total number of entities
+        userEmail:
+          type: string
+        multiEntitiesTask:
+          type: boolean
+    CreatePartnerAccountForResellerDTO:
+      type: object
+      description: Payload
+      properties:
+        email:
+          type: string
+          description: Account email
+        password:
+          type: string
+          description: Account password
+          minLength: 1
+        displayName:
+          type: string
+          description: Account name
+        region:
+          type: string
+          description: Account data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        customStorage:
+          $ref: '#/components/schemas/CustomStorage'
+          description: Custom backup data storage parameters
+      required:
+      - password
+    V2EntityStatusDirectView:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        taskId:
+          type: string
+          description: Task ID
+        source:
+          type: string
+          description: Service internal type
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        entityName:
+          type: string
+          description: Account email
+        lastBackupDate:
+          type: string
+          description: The date of the last successful backup
+        lastBackupAttemptDate:
+          type: string
+          description: 'The date when the last backup tried to execute. Normally it should be equal to LastBackupDate,
+
+            if not, i.e. LastBackupTryDate &gt; LastBackupDate =&gt;  it is a signal that the backup task failed'
+        backupDuration:
+          type: integer
+          format: int64
+          description: Last backup duration (in ms)
+        size:
+          type: integer
+          format: int64
+          description: The amount of uncompressed data stored in our storage in bytes. This information could be used to bill the clients for services where we charge based on storage amount
+        backupStatus:
+          type: array
+          description: Backup statuses
+          items:
+            $ref: '#/components/schemas/BackupStatusView'
+        msLicensing:
+          type: string
+          description: Whether the Exchange mailbox has a Microsoft license or is unlicensed
+          enum:
+          - LICENSED
+          - UNLICENSED
+          - NA
+    PageableResponseViewCollectionPartnerTaskView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/PartnerTaskView'
+    BillingDetailsView:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        discount:
+          type: number
+          format: double
+        currency:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        paymentType:
+          type: string
+          enum:
+          - MONTHLY
+          - ANNUAL
+        nextPaymentDate:
+          type: string
+          format: date-time
+        subscribed:
+          type: boolean
+        total:
+          type: number
+          format: double
+        trialDaysLeft:
+          type: integer
+          format: int32
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingLinesView'
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    AccessTokenView:
+      type: object
+      properties:
+        accessToken:
+          type: string
+    SignView:
+      type: object
+      description: Authorization credentials
+      properties:
+        email:
+          type: string
+          description: Account email
+        password:
+          type: string
+          description: Account password
+    PartnerPortalOperationsDTO:
+      type: object
+      description: Partner Portal operation permissions
+      properties:
+        viewPartnerSettingsPage:
+          type: boolean
+          description: Can view the Partner Settings page
+          example: true
+        viewBillingPage:
+          type: boolean
+          description: Can view the Billing page
+          example: true
+        viewBillingNotification:
+          type: boolean
+          description: Can view Billing notifications
+          example: true
+        viewDashboard:
+          type: boolean
+          description: Can view the Dashboard
+          example: true
+        viewSecurityAuditPage:
+          type: boolean
+          description: Can view the Security Audit page
+          example: true
+        addNewAccounts:
+          type: boolean
+          description: Can add new accounts
+          example: true
+        subscribeAccounts:
+          type: boolean
+          description: Can subscribe accounts
+          example: true
+        manageNotifications:
+          type: boolean
+          description: Can manage notifications
+          example: true
+        exportUsageReport:
+          type: boolean
+          description: Can export usage reports
+          example: true
+    ResellerUpdateDto:
+      type: object
+      properties:
+        resellerName:
+          type: string
+          description: Company name
+          example: Cloudally co
+          minLength: 1
+        contactName:
+          type: string
+          description: Reseller’s contact person
+          example: John Johnson
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+          example: GB
+          minLength: 1
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+      required:
+      - countryCode
+      - resellerName
+    PageableResponseViewListV2EntityStatusDirectView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/V2EntityStatusDirectView'
+    CreatePartnerAccountDTO:
+      type: object
+      description: Payload
+      properties:
+        email:
+          type: string
+          description: Account email
+        password:
+          type: string
+          description: Account password
+          minLength: 1
+        displayName:
+          type: string
+          description: Account name
+        region:
+          type: string
+          description: Account data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        partnerId:
+          type: string
+          description: Partner ID
+        partnerEmail:
+          type: string
+          description: Partner email
+        customStorage:
+          $ref: '#/components/schemas/CustomStorage'
+          description: Custom backup data storage parameters
+      required:
+      - password
+    PageableResponseViewListEntityStatusView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/EntityStatusView'
+    NotificationDto:
+      type: object
+      description: NotificationSettings
+      properties:
+        provideType:
+          type: string
+          description: How to send report as attachment or as a link to download
+          enum:
+          - LINK
+          - CSV
+        reportFreq:
+          type: string
+          description: Frequency of summary report, by default - DAILY
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          example: WEEKLY
+        reportDay:
+          type: string
+          description: Day of summary report - only in case of Weekly report
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+        sendSummaryReport:
+          type: boolean
+          description: Indicate should we send summary report or not
+        failureOnlyReport:
+          type: boolean
+          description: Indicate should we send only failed summary report (only in case of enabled summary report)
+      required:
+      - provideType
+    PageableResponseViewCollectionV2PartnerTaskView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/V2PartnerTaskView'
+    ResellerView:
+      type: object
+      properties:
+        resellerName:
+          type: string
+          description: Company name
+        contactName:
+          type: string
+          description: Reseller’s contact person
+        resellerEmail:
+          type: string
+          description: Reseller’s partner portal login e-mail
+        partnerId:
+          type: string
+          description: Reseller Partner Id
+        region:
+          type: string
+          description: Default data center for reseller’s accounts
+        countryCode:
+          type: string
+          description: 'Reseller’s country name from ISO3166-1 alpha-2 '
+        customStorage:
+          $ref: '#/components/schemas/CustomStorageView'
+          description: Custom storage configuration, by default distributor's config
+        waiveSharedMailboxes:
+          type: boolean
+          description: Defines whether shared mailboxes of partner’s accounts should be provided free of charge (true) or included in billing (false or not included in the request)
+        whiteLabel:
+          type: boolean
+        notificationSettings:
+          $ref: '#/components/schemas/NotificationDto'
+          description: Notification settings
+    PageableResponseViewListV2BillingDetailsView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/V2BillingDetailsView'

@@ -1,0 +1,211 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST Billing management API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: Billing management
+  description: Endpoint for billing.
+paths:
+  /v1/user/bills:
+    get:
+      tags:
+      - Billing management
+      summary: getBills
+      description: Get current billing forecast.
+      operationId: getBills
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user/bills:
+    get:
+      tags:
+      - Billing management
+      summary: getBills
+      description: Get current billing forecast.
+      operationId: getBills_1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BillingDetailsView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+components:
+  schemas:
+    BillingLinesView:
+      type: object
+      properties:
+        price:
+          type: number
+          format: double
+        accounts:
+          type: integer
+          format: int32
+        seat:
+          type: integer
+          format: int32
+        service:
+          type: string
+        type:
+          type: string
+          enum:
+          - BACKUP
+          - RESTORE
+          - EXPORT
+        source:
+          type: string
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        storage:
+          type: integer
+          format: int64
+        total:
+          type: number
+          format: double
+    BillingDetailsView:
+      type: object
+      properties:
+        userId:
+          type: string
+        email:
+          type: string
+        discount:
+          type: number
+          format: double
+        currency:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        paymentType:
+          type: string
+          enum:
+          - MONTHLY
+          - ANNUAL
+        nextPaymentDate:
+          type: string
+          format: date-time
+        subscribed:
+          type: boolean
+        total:
+          type: number
+          format: double
+        trialDaysLeft:
+          type: integer
+          format: int32
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillingLinesView'
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+    Payment:
+      type: object
+      properties:
+        amount:
+          type: number
+          format: double
+        date:
+          type: string
+          format: date-time
+        description:
+          type: string
+        currencyType:
+          type: string
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+    AccessDeniedError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 403
+        error:
+          type: string
+          example: Forbidden
+        path:
+          type: string
+          example: /v2/user/bills
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-11-28T06:29:14.100Z'

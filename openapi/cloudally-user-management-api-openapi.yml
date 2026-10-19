@@ -1,0 +1,1218 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST User management API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: User Management
+  description: Endpoint for Cloudally user management.
+paths:
+  /v2/user/{id}/permissions:
+    put:
+      tags:
+      - User Management
+      summary: updatePermissionsUser
+      description: Update permission setting of a Cloudally account user.
+      operationId: updatePermissionsUser
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPermissionsDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user/{id}/permissions:
+    put:
+      tags:
+      - User Management
+      summary: updatePermissionsUser
+      description: Update permission setting of a Cloudally account user.
+      operationId: updatePermissionsUser_1
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPermissionsDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user/settings:
+    put:
+      tags:
+      - User Management
+      summary: updateMeSettings
+      description: Update Cloudally account settings.
+      operationId: updateMeSettings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettingsDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user/settings:
+    put:
+      tags:
+      - User Management
+      summary: updateMeSettings
+      description: Update Cloudally account settings.
+      operationId: updateMeSettings_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSettingsDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user/password:
+    put:
+      tags:
+      - User Management
+      operationId: updatePassword
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPasswordDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: string
+                enum:
+                - 100 CONTINUE
+                - 101 SWITCHING_PROTOCOLS
+                - 102 PROCESSING
+                - 103 EARLY_HINTS
+                - 103 CHECKPOINT
+                - 200 OK
+                - 201 CREATED
+                - 202 ACCEPTED
+                - 203 NON_AUTHORITATIVE_INFORMATION
+                - 204 NO_CONTENT
+                - 205 RESET_CONTENT
+                - 206 PARTIAL_CONTENT
+                - 207 MULTI_STATUS
+                - 208 ALREADY_REPORTED
+                - 226 IM_USED
+                - 300 MULTIPLE_CHOICES
+                - 301 MOVED_PERMANENTLY
+                - 302 FOUND
+                - 302 MOVED_TEMPORARILY
+                - 303 SEE_OTHER
+                - 304 NOT_MODIFIED
+                - 305 USE_PROXY
+                - 307 TEMPORARY_REDIRECT
+                - 308 PERMANENT_REDIRECT
+                - 400 BAD_REQUEST
+                - 401 UNAUTHORIZED
+                - 402 PAYMENT_REQUIRED
+                - 403 FORBIDDEN
+                - 404 NOT_FOUND
+                - 405 METHOD_NOT_ALLOWED
+                - 406 NOT_ACCEPTABLE
+                - 407 PROXY_AUTHENTICATION_REQUIRED
+                - 408 REQUEST_TIMEOUT
+                - 409 CONFLICT
+                - 410 GONE
+                - 411 LENGTH_REQUIRED
+                - 412 PRECONDITION_FAILED
+                - 413 PAYLOAD_TOO_LARGE
+                - 413 REQUEST_ENTITY_TOO_LARGE
+                - 414 URI_TOO_LONG
+                - 414 REQUEST_URI_TOO_LONG
+                - 415 UNSUPPORTED_MEDIA_TYPE
+                - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+                - 417 EXPECTATION_FAILED
+                - 418 I_AM_A_TEAPOT
+                - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+                - 420 METHOD_FAILURE
+                - 421 DESTINATION_LOCKED
+                - 422 UNPROCESSABLE_ENTITY
+                - 423 LOCKED
+                - 424 FAILED_DEPENDENCY
+                - 425 TOO_EARLY
+                - 426 UPGRADE_REQUIRED
+                - 428 PRECONDITION_REQUIRED
+                - 429 TOO_MANY_REQUESTS
+                - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+                - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+                - 500 INTERNAL_SERVER_ERROR
+                - 501 NOT_IMPLEMENTED
+                - 502 BAD_GATEWAY
+                - 503 SERVICE_UNAVAILABLE
+                - 504 GATEWAY_TIMEOUT
+                - 505 HTTP_VERSION_NOT_SUPPORTED
+                - 506 VARIANT_ALSO_NEGOTIATES
+                - 507 INSUFFICIENT_STORAGE
+                - 508 LOOP_DETECTED
+                - 509 BANDWIDTH_LIMIT_EXCEEDED
+                - 510 NOT_EXTENDED
+                - 511 NETWORK_AUTHENTICATION_REQUIRED
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Update password
+      x-summary-source: derived
+  /v2/user/password:
+    put:
+      tags:
+      - User Management
+      operationId: updatePassword_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPasswordDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: string
+                enum:
+                - 100 CONTINUE
+                - 101 SWITCHING_PROTOCOLS
+                - 102 PROCESSING
+                - 103 EARLY_HINTS
+                - 103 CHECKPOINT
+                - 200 OK
+                - 201 CREATED
+                - 202 ACCEPTED
+                - 203 NON_AUTHORITATIVE_INFORMATION
+                - 204 NO_CONTENT
+                - 205 RESET_CONTENT
+                - 206 PARTIAL_CONTENT
+                - 207 MULTI_STATUS
+                - 208 ALREADY_REPORTED
+                - 226 IM_USED
+                - 300 MULTIPLE_CHOICES
+                - 301 MOVED_PERMANENTLY
+                - 302 FOUND
+                - 302 MOVED_TEMPORARILY
+                - 303 SEE_OTHER
+                - 304 NOT_MODIFIED
+                - 305 USE_PROXY
+                - 307 TEMPORARY_REDIRECT
+                - 308 PERMANENT_REDIRECT
+                - 400 BAD_REQUEST
+                - 401 UNAUTHORIZED
+                - 402 PAYMENT_REQUIRED
+                - 403 FORBIDDEN
+                - 404 NOT_FOUND
+                - 405 METHOD_NOT_ALLOWED
+                - 406 NOT_ACCEPTABLE
+                - 407 PROXY_AUTHENTICATION_REQUIRED
+                - 408 REQUEST_TIMEOUT
+                - 409 CONFLICT
+                - 410 GONE
+                - 411 LENGTH_REQUIRED
+                - 412 PRECONDITION_FAILED
+                - 413 PAYLOAD_TOO_LARGE
+                - 413 REQUEST_ENTITY_TOO_LARGE
+                - 414 URI_TOO_LONG
+                - 414 REQUEST_URI_TOO_LONG
+                - 415 UNSUPPORTED_MEDIA_TYPE
+                - 416 REQUESTED_RANGE_NOT_SATISFIABLE
+                - 417 EXPECTATION_FAILED
+                - 418 I_AM_A_TEAPOT
+                - 419 INSUFFICIENT_SPACE_ON_RESOURCE
+                - 420 METHOD_FAILURE
+                - 421 DESTINATION_LOCKED
+                - 422 UNPROCESSABLE_ENTITY
+                - 423 LOCKED
+                - 424 FAILED_DEPENDENCY
+                - 425 TOO_EARLY
+                - 426 UPGRADE_REQUIRED
+                - 428 PRECONDITION_REQUIRED
+                - 429 TOO_MANY_REQUESTS
+                - 431 REQUEST_HEADER_FIELDS_TOO_LARGE
+                - 451 UNAVAILABLE_FOR_LEGAL_REASONS
+                - 500 INTERNAL_SERVER_ERROR
+                - 501 NOT_IMPLEMENTED
+                - 502 BAD_GATEWAY
+                - 503 SERVICE_UNAVAILABLE
+                - 504 GATEWAY_TIMEOUT
+                - 505 HTTP_VERSION_NOT_SUPPORTED
+                - 506 VARIANT_ALSO_NEGOTIATES
+                - 507 INSUFFICIENT_STORAGE
+                - 508 LOOP_DETECTED
+                - 509 BANDWIDTH_LIMIT_EXCEEDED
+                - 510 NOT_EXTENDED
+                - 511 NETWORK_AUTHENTICATION_REQUIRED
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+      summary: Update password 1
+      x-summary-source: derived
+  /v1/user/secondaries:
+    get:
+      tags:
+      - User Management
+      summary: getMeSecondaries
+      description: Get list of the Cloudally users of a Cloudally account.
+      operationId: getMeSecondaries
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - User Management
+      summary: createSecondaryUser
+      description: Create a Cloudally user in a Cloudally account.
+      operationId: createSecondaryUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSecondaryUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user/secondaries:
+    get:
+      tags:
+      - User Management
+      summary: getMeSecondaries
+      description: Get list of the Cloudally users of a Cloudally account.
+      operationId: getMeSecondaries_1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - User Management
+      summary: createSecondaryUser
+      description: Create a Cloudally user in a Cloudally account.
+      operationId: createSecondaryUser_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSecondaryUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user:
+    get:
+      tags:
+      - User Management
+      summary: getMe
+      description: Get Cloudally Account settings.
+      operationId: getMe
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - User Management
+      summary: createPrimaryUser
+      description: Create a Cloudally account (trial status).
+      operationId: createPrimaryUser
+      parameters:
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrimaryUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user:
+    get:
+      tags:
+      - User Management
+      summary: getMe
+      description: Get Cloudally Account settings.
+      operationId: getMe_1
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    post:
+      tags:
+      - User Management
+      summary: createPrimaryUser
+      description: Create a Cloudally account (trial status).
+      operationId: createPrimaryUser_1
+      parameters:
+      - name: client-id
+        in: header
+        description: API client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: API client secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrimaryUserDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user/status:
+    get:
+      tags:
+      - User Management
+      summary: userStatus
+      description: Get status for all tasks of user.
+      operationId: userStatus
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data fetched successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityStatusPageView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user/status:
+    get:
+      tags:
+      - User Management
+      summary: userStatus
+      description: Get status for all tasks of user.
+      operationId: userStatus_1
+      parameters:
+      - name: pageSize
+        in: query
+        description: The number of records to display per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: nextPageToken
+        in: query
+        description: Next page token
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Data fetched successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityStatusPageView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/user/{id}:
+    delete:
+      tags:
+      - User Management
+      summary: deleteUser
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/user/{id}:
+    delete:
+      tags:
+      - User Management
+      summary: deleteUser
+      description: Cancel subscription and delete a Cloudally account.
+      operationId: deleteUser_1
+      parameters:
+      - name: id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+components:
+  schemas:
+    EntityStatusPageView:
+      type: object
+      description: Pageable response containing a list of EntityStatusView
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/EntityStatusView'
+    BackupStatusView:
+      type: object
+      properties:
+        subSource:
+          type: string
+          description: Service sub-type (mail, tasks, calendar, etc.)
+        status:
+          type: string
+          description: Task status
+        error:
+          type: string
+          description: Short meaningful error
+        errFAQLink:
+          type: string
+          description: Link of error to FAQ page
+    UserPasswordDTO:
+      type: object
+      properties:
+        newPassword:
+          type: string
+          description: New password
+          minLength: 1
+        password:
+          type: string
+          description: Old password
+      required:
+      - newPassword
+    CreateSecondaryUserDTO:
+      type: object
+      description: User credentials
+      properties:
+        accessLevel:
+          type: string
+          description: Account access level
+          enum:
+          - NONE
+          - CUSTOM
+          - FULL
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/PermissionsView'
+          description: Account permissions table
+        email:
+          type: string
+          description: Additional account email
+        password:
+          type: string
+          description: Additional account password
+          minLength: 1
+      required:
+      - password
+    CustomStorage:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Cloud storage type
+          enum:
+          - S3
+          - S3_COMPATIBLE
+          - GCP
+          - AZURE
+          - DISTRIBUTOR_CLOUD
+        s3Key:
+          type: string
+          description: Amazon S3 account key
+        s3Secret:
+          type: string
+          description: Amazon S3 account secret
+        s3Region:
+          type: string
+          description: Amazon S3 region
+          enum:
+          - US_EST
+          - EU
+          - EU_FRANKFURT
+          - CANADA
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - LONDON
+          - EU_PARIS
+          - AFRICA_CAPE_TOWN
+          - ASIA_MUMBAI
+          - EU_ZURICH
+        s3Bucket:
+          type: string
+          description: Amazon S3 bucket name
+        endPoint:
+          type: string
+          description: Amazon S3 compatible endpoint
+    UserView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Account access level
+        name:
+          type: string
+          description: Account friendly name
+        email:
+          type: string
+          description: Account email
+        status:
+          type: string
+          description: Account status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - BLOCKED
+          - DELETED
+          - TRIAL
+          - UNSUBSCRIBED
+        date:
+          type: integer
+          format: int32
+          description: Subscription date
+        dailyReport:
+          type: boolean
+          description: Toggle send daily report
+        region:
+          type: string
+          description: Account data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        discount:
+          type: integer
+          format: int32
+          description: Account discount
+        reportEmails:
+          type: array
+          description: Email list to send reports to
+          items:
+            type: string
+        partnerID:
+          type: string
+          description: Account partner ID
+        currency:
+          type: string
+          description: Account billing currency
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        customStorage:
+          $ref: '#/components/schemas/CustomStorageView'
+          description: Custom cloud storage
+        ms365EnterprisePlan:
+          type: boolean
+          description: MS 365 Bundle plan
+        gsuiteEnterprisePlan:
+          type: boolean
+          description: Google Workspace Bundle plan
+        externalId:
+          type: string
+          description: External ID of the user
+    CustomStorageView:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - S3
+          - S3_COMPATIBLE
+          - GCP
+          - AZURE
+          - DISTRIBUTOR_CLOUD
+    PermissionsView:
+      type: object
+      properties:
+        service:
+          type: string
+          description: Service type
+          enum:
+          - ACCOUNT
+          - USERS
+          - SUPPORT
+          - PAYMENTS
+          - BILLING_STATE
+          - ACCOUNT_ACTIVITY
+          - BACKUPS
+          - RESTORE_AND_DOWNLOAD
+          - PREVIEW
+          - DASHBOARD
+          - DASHBOARD_ACCOUNT
+          - DASHBOARD_SUBSCRIBE
+          - PP_ACCOUNT
+          - PP_SECURITY_AUDIT
+          - PP_PAYMENTS
+          - PP_BILLING_STATE
+          - MANAGE_NOTIFICATIONS
+          - EXPORT_USAGE_REPORT
+          - PP_MANAGE_NOTIFICATIONS
+          - ACCOUNT_SECURITY_AUDIT
+          - MS365
+          - MS365GROUPS
+          - SHAREPOINT_MULTI
+          - SHAREPOINT
+          - ONEDRIVE
+          - GOOGLEAPPS
+          - GDRIVETEAM
+          - SFC
+          - BOX
+          - GACCOUNTS
+          - IMAP
+          - YMAIL
+          - DDB
+          - SDB
+          - DROPBOX
+          - DYNAMICS365
+          - ENTRAID
+        permissions:
+          type: object
+          additionalProperties:
+            type: boolean
+          description: Permissions table
+    AccessDeniedError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 403
+        error:
+          type: string
+          example: Forbidden
+        path:
+          type: string
+          example: /v2/user/bills
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-11-28T06:29:14.100Z'
+    UserPermissionsDTO:
+      type: object
+      description: Permission settings
+      properties:
+        accessLevel:
+          type: string
+          description: Account access level
+          enum:
+          - NONE
+          - CUSTOM
+          - FULL
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/PermissionsView'
+          description: Account permissions table
+    UserSettingsDTO:
+      type: object
+      description: Update account settings
+      properties:
+        name:
+          type: string
+          description: Account friendly name
+        email:
+          type: string
+          description: Account email
+        dailyReport:
+          type: boolean
+          description: Send daily report
+        region:
+          type: string
+          description: Data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        partnerID:
+          type: string
+          description: Partner ID
+        currency:
+          type: string
+          description: Currency
+          enum:
+          - USD
+          - EUR
+          - AUD
+          - GBP
+          - ILS
+          - CAD
+          - JPY
+        invoiceLineType:
+          type: string
+          description: Group invoice lines by service type
+          enum:
+          - PERSERVICE
+          - PERTASK
+          - PERTOTAL
+        externalId:
+          type: string
+          description: External ID of the user
+    CreatePrimaryUserDTO:
+      type: object
+      description: Sign-up parameters
+      properties:
+        email:
+          type: string
+          description: Account email
+        password:
+          type: string
+          description: Account password
+          minLength: 1
+        displayName:
+          type: string
+          description: Account friendly name
+        region:
+          type: string
+          description: Account data center
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        partnerId:
+          type: string
+          description: Partner ID
+        partnerEmail:
+          type: string
+          description: Partner email
+        partnerPassword:
+          type: string
+          description: Partner password
+        customStorage:
+          $ref: '#/components/schemas/CustomStorage'
+          description: Custom backup data storage parameters
+        externalId:
+          type: string
+          description: External ID of the user
+      required:
+      - password
+    EntityStatusView:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User ID
+        taskId:
+          type: string
+          description: Task ID
+        source:
+          type: string
+          description: Service internal type
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        entityName:
+          type: string
+          description: Account email
+        lastBackupDate:
+          type: string
+          description: The date of the last successful backup
+        lastBackupAttemptDate:
+          type: string
+          description: 'The date when the last backup tried to execute. Normally it should be equal to LastBackupDate,
+
+            if not, i.e. LastBackupTryDate &gt; LastBackupDate =&gt;  it is a signal that the backup task failed'
+        backupDuration:
+          type: integer
+          format: int64
+          description: Last backup duration (in ms)
+        size:
+          type: integer
+          format: int64
+          description: The amount of uncompressed data stored in our storage in bytes. This information could be used to bill the clients for services where we charge based on storage amount
+        backupStatus:
+          type: array
+          description: Backup statuses
+          items:
+            $ref: '#/components/schemas/BackupStatusView'
+    JsonResponseDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: A flag indicating a successful response
+        status:
+          type: string
+          description: Response status description
+        statusCode:
+          type: integer
+          format: int32
+          description: Response return code

@@ -1,0 +1,309 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST API Authorization API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: API Authorization
+  description: Authorization endpoint.
+paths:
+  /v2/auth:
+    post:
+      tags:
+      - API Authorization
+      summary: Authorize to the Cloudally portal
+      description: Returns the access and refresh tokens.
+      operationId: auth
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: false
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenViewV2'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /v2/auth/refresh:
+    post:
+      tags:
+      - API Authorization
+      summary: Update the access token
+      description: Returns the access and refresh tokens.
+      operationId: refresh
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenView'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /v2/auth/partner:
+    post:
+      tags:
+      - API Authorization
+      summary: Authorize to the partner portal
+      description: Returns the access and refresh tokens.
+      operationId: authAsPartner
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: false
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenViewV2'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /auth:
+    post:
+      tags:
+      - API Authorization
+      summary: Authorize to the Cloudally portal
+      description: Returns the access and refresh tokens.
+      operationId: auth_1
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: false
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenView'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /auth/refresh:
+    post:
+      tags:
+      - API Authorization
+      summary: Update the access token
+      description: Returns the access and refresh tokens.
+      operationId: refresh_1
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: true
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenView'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /auth/partner:
+    post:
+      tags:
+      - API Authorization
+      summary: Authorize to the partner portal
+      description: Returns the access and refresh tokens.
+      operationId: authAsPartner_1
+      parameters:
+      - name: client-id
+        in: header
+        description: Application client ID
+        required: false
+        schema:
+          type: string
+      - name: client-secret
+        in: header
+        description: Application secret
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignView'
+        required: true
+      responses:
+        '200':
+          description: Successful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TokenView'
+        '401':
+          description: Unsuccessful authorization.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+components:
+  schemas:
+    RefreshTokenView:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+    TokenView:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access token to retrieve data
+        tokenType:
+          type: string
+          description: Bearer
+        expiresIn:
+          type: integer
+          format: int64
+          description: Expiration date for the access token
+        refreshToken:
+          type: string
+          description: Refresh token used to update access token
+    UnauthorizedError:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          example: Invalid client credentials
+    TokenViewV2:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: Access token to retrieve data
+        tokenType:
+          type: string
+          description: Bearer
+        expiresIn:
+          type: integer
+          format: int64
+          description: Expiration date for the access token
+        refreshToken:
+          type: string
+          description: Refresh token used to update access token
+        refreshTokenExpiresIn:
+          type: integer
+          format: int64
+          description: Expiration date for the access token
+    SignView:
+      type: object
+      description: Authorization credentials
+      properties:
+        email:
+          type: string
+          description: Account email
+        password:
+          type: string
+          description: Account password

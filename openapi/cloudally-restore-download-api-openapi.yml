@@ -1,0 +1,593 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST Restore & Download API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: Restore & Download
+  description: Endpoint for Cloudally account activity.
+paths:
+  /v2/resellers/accounts/{accountId}/recovery/restore:
+    post:
+      tags:
+      - Restore & Download
+      summary: createRestore
+      description: Restore from a backup.
+      operationId: createRestore
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RestoreOrDownloadResultDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/resellers/accounts/{accountId}/recovery/export:
+    post:
+      tags:
+      - Restore & Download
+      summary: createExport
+      description: Download a backup.
+      operationId: createExport
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/recovery/restore:
+    post:
+      tags:
+      - Restore & Download
+      summary: createRestore
+      description: Restore from a backup.
+      operationId: createRestore_1
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RestoreOrDownloadResultDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/recovery/export:
+    post:
+      tags:
+      - Restore & Download
+      summary: createExport
+      description: Download a backup.
+      operationId: createExport_1
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/recovery/restore:
+    post:
+      tags:
+      - Restore & Download
+      summary: createRestore
+      description: Restore from a backup.
+      operationId: createRestore_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RestoreOrDownloadResultDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/recovery/restore:
+    post:
+      tags:
+      - Restore & Download
+      summary: createRestore
+      description: Restore from a backup.
+      operationId: createRestore_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RestoreOrDownloadResultDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/recovery/export:
+    post:
+      tags:
+      - Restore & Download
+      summary: createExport
+      description: Download a backup.
+      operationId: createExport_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v1/recovery/export:
+    post:
+      tags:
+      - Restore & Download
+      summary: createExport
+      description: Download a backup.
+      operationId: createExport_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                type: object
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+components:
+  schemas:
+    ExportDTO:
+      type: object
+      description: Download settings
+      properties:
+        taskId:
+          type: string
+          description: Backup task ID
+        account:
+          type: string
+          description: Account to restore
+        source:
+          type: string
+          description: Service to restore
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        date:
+          type: integer
+          format: int64
+          description: Backup date
+        includeDeleted:
+          type: boolean
+          description: Include deleted items
+        includeLegalHold:
+          type: boolean
+          description: Include files with the legal hold
+        extid:
+          type: string
+          description: External id of entity (for multiple entities tasks)
+        entities:
+          type: array
+          description: for item level recovery
+          items:
+            $ref: '#/components/schemas/TaskEntityDTO'
+        downloadToPst:
+          type: boolean
+          description: Download in PST format (splits large files into chunks)
+        preferSinglePST:
+          type: boolean
+          description: Download in PST format (single file)
+        storageType:
+          type: string
+          description: Optional, default value is CLOUDALLY_S3, use this field if you wish to download data to your own cloud storage
+          enum:
+          - CLOUDALLY_S3
+          - AMAZON_S3
+          - AZURE
+          - GOOGLE_CLOUD_PLATFORM
+          - AMAZON_S3_COMPATIBLE
+        storageBucketName:
+          type: string
+          description: AWS/GCP bucket name or Azure blob container name, used with AMAZON_S3, AMAZON_S3_COMPATIBLE, GOOGLE_CLOUD_PLATFORM or AZURE storage type
+        storageKey:
+          type: string
+          description: AWS/GCP Key or Azure account name, used with AMAZON_S3, AMAZON_S3_COMPATIBLE, GOOGLE_CLOUD_PLATFORM  or AZURE storage type
+        storageSecretKey:
+          type: string
+          description: AWS/GCP secret key or Azure access key, used with AMAZON_S3, AMAZON_S3_COMPATIBLE, GOOGLE_CLOUD_PLATFORM or AZURE storage type
+        storageRegion:
+          type: string
+          description: AWS/GCP storage Region, used with AMAZON_S3, AMAZON_S3_COMPATILE or GOOGLE_CLOUD_PLATFORM storage type
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        storageEndPoint:
+          type: string
+          description: Storage endpoint URL, used with AMAZON_S3_COMPATIBLE
+      required:
+      - account
+      - date
+      - source
+      - taskId
+    TaskEntityDTO:
+      type: object
+      properties:
+        entityId:
+          type: string
+          description: Backup entity ID
+        filename:
+          type: string
+          description: File name
+        backupDate:
+          type: integer
+          format: int64
+          description: Backup date
+        folderid:
+          type: string
+          description: Folder ID
+        parentId:
+          type: string
+          description: Parent ID
+        isDeleted:
+          type: string
+          description: is deleted
+        entityType:
+          type: string
+          description: Entity type
+          enum:
+          - FOLDER
+          - DOCUMENT
+          - QUERY
+          - MD_FOLDER
+          - MD_FILE
+          - SEMI_FOLDER
+        itemId:
+          type: integer
+          format: int64
+          description: Item ID
+    RestoreOrDownloadResultDTO:
+      type: object
+      properties:
+        needRedirect:
+          type: boolean
+          description: Redirect flag for OAuth authorization type
+        redirectUrl:
+          type: string
+          description: Redirect URL for OAuth authorization type
+        showNotification:
+          type: boolean
+          description: Notification flag
+        notificationMessage:
+          type: string
+          description: Message of notification
+    AccessDeniedError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 403
+        error:
+          type: string
+          example: Forbidden
+        path:
+          type: string
+          example: /v2/user/bills
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-11-28T06:29:14.100Z'
+    RestoreDTO:
+      type: object
+      description: Restore settings
+      properties:
+        taskId:
+          type: string
+          description: Backup task ID
+        account:
+          type: string
+          description: Account to restore
+        source:
+          type: string
+          description: Service to restore
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        date:
+          type: integer
+          format: int64
+          description: Backup date
+        includeDeleted:
+          type: boolean
+          description: Include deleted items
+        includeLegalHold:
+          type: boolean
+          description: Include files with the legal hold
+        extid:
+          type: string
+          description: External id of entity (for multiple entities tasks)
+        entities:
+          type: array
+          description: for item level recovery
+          items:
+            $ref: '#/components/schemas/TaskEntityDTO'
+        accCred:
+          type: string
+          description: Target account password
+        targetDomain:
+          type: string
+          description: Target domain name (SimpleDB or DynamoDB)
+        targetRegion:
+          type: string
+          description: Target domain region (SimpleDB or DynamoDB)
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        targetAccount:
+          type: string
+          description: Target account name
+        endpointURI:
+          type: string
+          description: For sharepoint/onedrive resotore
+        inPlace:
+          type: boolean
+          description: For sharepoint/onedrive restore (the new site will not be created)
+        sandbox:
+          type: boolean
+          description: For salesforce restore (define restore to sandbox or production system)
+        includeMetadata:
+          type: integer
+          format: int32
+          description: For salesforce restore (define restore with md or not)
+        startInactiveUsers:
+          type: boolean
+          description: For salesforce restore. If this flag is true, we have to activate all inactive users and deactivate them in the last stage
+        disableTriggers:
+          type: boolean
+          description: For salesforce restore (define disable triggers or not)
+        restoreOption:
+          type: string
+          description: Restore option (define how to resolve conflict with existing data)
+        destinationExtId:
+          type: string
+          description: Destination External Id
+      required:
+      - account
+      - date
+      - source
+      - taskId

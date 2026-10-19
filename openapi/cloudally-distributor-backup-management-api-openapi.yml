@@ -1,0 +1,1037 @@
+openapi: 3.2.0
+info:
+  title: Cloudally REST Distributor Backup management API
+  description: Cloudally integration API for your platform.
+  termsOfService: https://cybersecurity.opentext.com/legal/agreements-for-cybersecurity-data-security-and-data-protection-solutions/
+  contact:
+    name: Cloudally Support
+    url: https://www.cloudally.com/contactus/
+    email: support@cloudally.com
+servers:
+- url: https://api.cloudally.com
+  description: Generated server url
+tags:
+- name: Distributor Backup management
+  description: Endpoint for a backup tasks activation and management for distributors.
+paths:
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/pause:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: pause
+      description: Pause execution by schedule for all accounts or sites of a backup task.
+      operationId: pause_2
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: addEntity
+      description: Manually add a site or account for a backup in a backup task.
+      operationId: addEntity_1
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddEntityDTO'
+        required: true
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities/{entityId}/pause:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: pause
+      description: Pause execution by schedule of a specified account or a site.
+      operationId: pause_3
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: A site or an account ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities/{entityId}/cancel:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: cancel
+      description: Cancel the specified running task of a specified account or a site.
+      operationId: cancel_2
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: A site or an account ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities/{entityId}/backupNow:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: backupNow
+      description: Run a backup for the specified account or site.
+      operationId: backupNow_2
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: A site or an account ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities/{entityId}/activate:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: activate
+      description: Activate a specific account in a task for a backup.
+      operationId: activate_2
+      parameters:
+      - name: id
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Account/Site ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/cancel:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: cancel
+      description: Cancel the specified running task (an entire backup, restore or download tasks).
+      operationId: cancel_3
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/backupNow:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: backupNow
+      description: Run a backup task with all the activated accounts or sites in it.
+      operationId: backupNow_3
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/activate:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: activate
+      description: Activate a backup task to run on schedule, if it was paused.
+      operationId: activate_3
+      parameters:
+      - name: id
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/activateAll:
+    post:
+      tags:
+      - Distributor Backup management
+      summary: activateAll
+      description: Activate all accounts in a task for a backup.
+      operationId: activateAll_1
+      parameters:
+      - name: id
+        in: path
+        description: Task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks:
+    get:
+      tags:
+      - Distributor Backup management
+      summary: getTasks
+      description: 'List all tasks of a specified type: backup, restore, download (paginated).'
+      operationId: getTasks_1
+      parameters:
+      - name: source
+        in: query
+        description: Service type (e.g. Office 365 Exchange, Yahoo Mail)
+        required: false
+        schema:
+          type: string
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+      - name: page
+        in: query
+        description: The page number
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of rows per page
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      - name: type
+        in: query
+        description: 'Task type: backup, restore or download'
+        required: false
+        schema:
+          type: string
+          enum:
+          - BACKUP
+          - RESTORE
+          - EXPORT
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageableResponseViewCollectionTaskView'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}:
+    get:
+      tags:
+      - Distributor Backup management
+      summary: getTask
+      description: Get information for the specified task
+      operationId: getTask_1
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TaskViewWithEntities'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+    delete:
+      tags:
+      - Distributor Backup management
+      summary: delete
+      description: Delete a backup task, removing all the data.
+      operationId: delete_1
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+  /v2/distributors/accounts/{accountId}/backup-tasks/{id}/entities/{entityId}:
+    delete:
+      tags:
+      - Distributor Backup management
+      summary: delete
+      description: Deactivate an account or site from a backup, removing all the coorresponding data.
+      operationId: delete_5
+      parameters:
+      - name: id
+        in: path
+        description: A backup task ID
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: A site or an account ID
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the information.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JsonResponseDTO'
+        '401':
+          description: The user is not logged in.
+        '403':
+          description: The user does not have an access to view the account activity.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AccessDeniedError'
+components:
+  schemas:
+    TaskViewWithEntities:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+        account:
+          type: string
+          description: Account name
+        type:
+          type: string
+          description: Task type
+          enum:
+          - BACKUP
+          - RESTORE
+          - DEACTIVATEUSER
+          - DELETEACCOUNTDATA
+          - FINISHEDACK
+          - TERMINATE_MACHINE
+          - EXPORT
+          - MIGRATE
+          - DELETEINDEXDATA
+          - INDEX
+          - DELETEITEMS
+          - COMPARISON
+          - EXPORTACTIVITY
+          - PP_EXPORTACTIVITY
+        source:
+          type: string
+          description: Service name
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        userId:
+          type: string
+          description: User ID
+        domain:
+          type: string
+          description: Domain name (SimpleDB, DynamoDB)
+        status:
+          type: string
+          description: Task status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - IN_ANOTHER
+          - PENDING
+          - PAUSED
+          - ON_PREMISE
+          - SKIPPED
+          - DISPATCHED
+          - QUEUED
+          - INPROCESS
+          - ARCHIVED
+        region:
+          type: string
+          description: Data center (SimpleDB, DynamoDB)
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        alias:
+          type: string
+          description: Friendly name
+        backupTaskId:
+          type: string
+          description: Backup task ID
+        index:
+          type: boolean
+          description: Index flag
+        snapshotDate:
+          type: integer
+          format: int64
+          description: Snapshot date (yyyyMMddHHmmss)
+        lastBackupDates:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+          description: Last successful backup dates table per each sub-sourse (mail, calendar, tasks, etc.) (yyyyMMddHHmmss)
+        nextBackup:
+          type: string
+          description: Schedule for the next backup
+        progress:
+          $ref: '#/components/schemas/TaskProgressView'
+          description: Task current progress
+        size:
+          type: integer
+          format: int64
+          description: Backup size (bytes)
+        createDate:
+          type: string
+          format: date-time
+          description: Date and time when this task was created.
+        numOfBilledEntities:
+          type: integer
+          format: int32
+          description: Number of billed entities
+        numOfEntities:
+          type: integer
+          format: int32
+          description: Total number of entities
+        entities:
+          type: array
+          description: A list of accounts or sites for the task
+          items:
+            $ref: '#/components/schemas/EntityView'
+        multiEntitiesTask:
+          type: boolean
+    AddEntityDTO:
+      type: object
+      description: Site or account name
+      properties:
+        entity:
+          type: string
+          description: Site or account name
+    EntityView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Site or account ID
+        userId:
+          type: string
+          description: User ID
+        taskId:
+          type: string
+          description: Task ID
+        entity:
+          type: string
+          description: Site or account name
+        status:
+          type: string
+          description: Task status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - IN_ANOTHER
+          - PENDING
+          - PAUSED
+          - ON_PREMISE
+          - SKIPPED
+          - DISPATCHED
+          - QUEUED
+          - INPROCESS
+          - ARCHIVED
+        lastBackupDates:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+          description: Last backup dates per each sub-source (Mail, Calendar, Tasks, etc.)
+        fullName:
+          type: string
+          description: Name
+        progress:
+          $ref: '#/components/schemas/TaskProgressView'
+          description: Task current progress
+        extId:
+          type: string
+          description: Site or account ID in the external system
+    TaskView:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Task ID
+        account:
+          type: string
+          description: Account name
+        type:
+          type: string
+          description: Task type
+          enum:
+          - BACKUP
+          - RESTORE
+          - DEACTIVATEUSER
+          - DELETEACCOUNTDATA
+          - FINISHEDACK
+          - TERMINATE_MACHINE
+          - EXPORT
+          - MIGRATE
+          - DELETEINDEXDATA
+          - INDEX
+          - DELETEITEMS
+          - COMPARISON
+          - EXPORTACTIVITY
+          - PP_EXPORTACTIVITY
+        source:
+          type: string
+          description: Service name
+          enum:
+          - GMAIL
+          - GDOC
+          - GDRIVETEAM
+          - SFC
+          - GOOGLEAPPS
+          - GCALENDAR
+          - GTASK
+          - GCONTACTS
+          - YMAIL
+          - GACCOUNTS
+          - GSITES
+          - SDB
+          - O365MAIL
+          - O365CONTACTS
+          - DDB
+          - MS365
+          - O365CALENDAR
+          - O365TASKS
+          - SHAREPOINT
+          - SHAREPOINT_MULTI
+          - ONEDRIVE
+          - IMAP
+          - BOX
+          - PUBLICWORDPRESS
+          - DROPBOX
+          - MS365GROUPS
+          - MS365GROUP_CONVERSATIONS
+          - MS365GROUP_CALENDAR
+          - MS365GROUP_SITE
+          - MS365GROUP_META
+          - O365NOTES
+          - MS365TEAM_CHANNELS
+          - MS365TEAM_APPS
+          - MSTEAMS
+          - MSGROUPS
+          - INTERNAL
+          - DYNAMICS365
+          - ENTRAID
+        userId:
+          type: string
+          description: User ID
+        domain:
+          type: string
+          description: Domain name (SimpleDB, DynamoDB)
+        status:
+          type: string
+          description: Task status
+          enum:
+          - ACTIVE
+          - NOTACTIVE
+          - IN_ANOTHER
+          - PENDING
+          - PAUSED
+          - ON_PREMISE
+          - SKIPPED
+          - DISPATCHED
+          - QUEUED
+          - INPROCESS
+          - ARCHIVED
+        region:
+          type: string
+          description: Data center (SimpleDB, DynamoDB)
+          enum:
+          - US_EST
+          - US_EST_OHIO
+          - US_WEST_OREGON
+          - US_WEST_CAL
+          - EU
+          - EU_FRANKFURT
+          - ASIA_HONG_KONG
+          - ASIA_MUMBAI
+          - ASIA_SEOUL
+          - ASIA_SINGAPORE
+          - ASIA_SIDNEY
+          - ASIA_TOKYO
+          - SOUTH_AMERICA
+          - AFRICA_CAPE_TOWN
+          - ASIA_CHINA
+          - CANADA
+          - LONDON
+          - EU_PARIS
+          - EU_STOCKHOLM
+          - EU_ZURICH
+        alias:
+          type: string
+          description: Friendly name
+        backupTaskId:
+          type: string
+          description: Backup task ID
+        index:
+          type: boolean
+          description: Index flag
+        snapshotDate:
+          type: integer
+          format: int64
+          description: Snapshot date (yyyyMMddHHmmss)
+        lastBackupDates:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int64
+          description: Last successful backup dates table per each sub-sourse (mail, calendar, tasks, etc.) (yyyyMMddHHmmss)
+        nextBackup:
+          type: string
+          description: Schedule for the next backup
+        progress:
+          $ref: '#/components/schemas/TaskProgressView'
+          description: Task current progress
+        size:
+          type: integer
+          format: int64
+          description: Backup size (bytes)
+        createDate:
+          type: string
+          format: date-time
+          description: Date and time when this task was created.
+        numOfBilledEntities:
+          type: integer
+          format: int32
+          description: Number of billed entities
+        numOfEntities:
+          type: integer
+          format: int32
+          description: Total number of entities
+        multiEntitiesTask:
+          type: boolean
+    AccessDeniedError:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 403
+        error:
+          type: string
+          example: Forbidden
+        path:
+          type: string
+          example: /v2/user/bills
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-11-28T06:29:14.100Z'
+    JsonResponseDTO:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: A flag indicating a successful response
+        status:
+          type: string
+          description: Response status description
+        statusCode:
+          type: integer
+          format: int32
+          description: Response return code
+    TaskProgressView:
+      type: object
+      properties:
+        current:
+          type: integer
+          format: int32
+          description: The number of processed items at the moment
+        state:
+          type: string
+          description: State of the backup process
+          enum:
+          - PREPARE
+          - BACKUP
+          - FINALIZE
+        service:
+          type: string
+          description: Service name
+        cancelled:
+          type: boolean
+    PageableResponseViewCollectionTaskView:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Page number
+        totalPages:
+          type: integer
+          format: int32
+          description: Total pages
+        total:
+          type: integer
+          format: int32
+          description: Number of items per page
+        nextPageToken:
+          type: string
+          description: Next page token
+        data:
+          type: array
+          description: Response items
+          items:
+            $ref: '#/components/schemas/TaskView'

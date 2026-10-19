@@ -70,104 +70,114 @@ description: >-
   automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing
   reporting.
 apis:
-- aid: cloudally:cloudally-authentication-api
-  name: CloudAlly Authentication API
-  description: Token issuance and refresh.
+- aid: cloudally:cloudally-api-authorization-api
+  name: CloudAlly API Authorization API
+  description: Authorization endpoint.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Authentication
+  - API Authorization
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-authentication-api-openapi.yml
+    url: openapi/cloudally-api-authorization-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-backups-api
-  name: CloudAlly Backups API
-  description: Backup tasks and status.
+- aid: cloudally:cloudally-backup-management-api
+  name: CloudAlly Backup management API
+  description: Endpoint for a backup tasks activation and management.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Backups
+  - Backup management
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-backups-api-openapi.yml
+    url: openapi/cloudally-backup-management-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-billing-api
-  name: CloudAlly Billing API
-  description: Billing and invoicing data.
+- aid: cloudally:cloudally-billing-management-api
+  name: CloudAlly Billing management API
+  description: Endpoint for billing.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Billing
+  - Billing management
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-billing-api-openapi.yml
+    url: openapi/cloudally-billing-management-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-partners-api
-  name: CloudAlly Partners API
-  description: Partner-portal account, billing, and reseller endpoints.
+- aid: cloudally:cloudally-distributor-backup-management-api
+  name: CloudAlly Distributor Backup management API
+  description: Endpoint for a backup tasks activation and management for distributors.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Partners
+  - Distributor Backup management
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-partners-api-openapi.yml
+    url: openapi/cloudally-distributor-backup-management-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-restore-api
-  name: CloudAlly Restore API
-  description: Restore and download requests.
+- aid: cloudally:cloudally-partner-portal-api
+  name: CloudAlly Partner Portal API
+  description: Endpoint for partner related requests.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Restore
+  - Partner Portal
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-restore-api-openapi.yml
+    url: openapi/cloudally-partner-portal-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-tasks-api
-  name: CloudAlly Tasks API
-  description: Long-running task status.
+- aid: cloudally:cloudally-reseller-backup-management-api
+  name: CloudAlly Reseller Backup management API
+  description: Endpoint for a backup tasks activation and management for resellers.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - Task
-  tags_raw:
-  - Tasks
+  - Reseller Backup management
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-tasks-api-openapi.yml
+    url: openapi/cloudally-reseller-backup-management-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
     url: https://support.cloudally.com/
-- aid: cloudally:cloudally-users-api
-  name: CloudAlly Users API
-  description: User and account management.
+- aid: cloudally:cloudally-restore-download-api
+  name: CloudAlly Restore & Download API
+  description: Endpoint for Cloudally account activity.
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
-  - User
-  tags_raw:
-  - Users
+  - Restore & Download
   properties:
   - type: OpenAPI
-    url: openapi/cloudally-users-api-openapi.yml
+    url: openapi/cloudally-restore-download-api-openapi.yml
+  - type: Documentation
+    url: https://api.cloudally.com/documentation
+  - type: Support
+    url: https://support.cloudally.com/
+- aid: cloudally:cloudally-user-management-api
+  name: CloudAlly User management API
+  description: Endpoint for Cloudally user management.
+  humanURL: https://api.cloudally.com/documentation
+  baseURL: https://api.cloudally.com
+  tags:
+  - User management
+  properties:
+  - type: OpenAPI
+    url: openapi/cloudally-user-management-api-openapi.yml
   - type: Documentation
     url: https://api.cloudally.com/documentation
   - type: Support
