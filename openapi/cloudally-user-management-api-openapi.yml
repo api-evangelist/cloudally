@@ -1216,3 +1216,9 @@ components:
           type: integer
           format: int32
           description: Response return code
+x-provenance:
+  method: harvested
+  publisher: CloudAlly
+  source: https://api.cloudally.com/v3/api-docs
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
