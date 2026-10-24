@@ -90,6 +90,8 @@ apis:
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
+  - Backup Management
+  tags_raw:
   - Backup management
   properties:
   - type: OpenAPI
@@ -104,6 +106,8 @@ apis:
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
+  - Billing Management
+  tags_raw:
   - Billing management
   properties:
   - type: OpenAPI
@@ -174,6 +178,8 @@ apis:
   humanURL: https://api.cloudally.com/documentation
   baseURL: https://api.cloudally.com
   tags:
+  - User Management
+  tags_raw:
   - User management
   properties:
   - type: OpenAPI
