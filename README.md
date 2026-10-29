@@ -1,4 +1,4 @@
-# CloudAlly (cloudally)
+# CloudAlly
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,72 +66,150 @@
 
 CloudAlly (now part of OpenText Cybersecurity) is a SaaS backup and recovery service that protects business data in Microsoft 365, Google Workspace, Salesforce, Box, Dropbox, SharePoint, and OneDrive. The platform offers automated daily backups, point-in-time restore, cross-user restore, granular search, and partner-portal multitenancy features. Beyond the web console, CloudAlly exposes a REST API at api.cloudally.com that lets administrators and partners automate backup-task management, restore/download requests, user provisioning, partner-portal operations, and billing reporting.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cloudally/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cloudally/refs/heads/main/apis.yml)
+**Areas:** Backup · Box · Data Protection · Disaster Recovery · Dropbox · Google Workspace · Microsoft 365 · OpenText · SaaS Backup · Salesforce
 
-## Scope
+## CloudAlly on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for CloudAlly is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cloudally/](https://apis.io/providers/cloudally/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Backup
-- Box
-- Data Protection
-- Disaster Recovery
-- Dropbox
-- Google Workspace
-- Microsoft 365
-- OpenText
-- SaaS Backup
-- Salesforce
+- [CloudAlly Authentication API](https://apis.io/apis/cloudally/cloudally-authentication-api/) — Token issuance and refresh.
+- [CloudAlly Backups API](https://apis.io/apis/cloudally/cloudally-backups-api/) — Backup tasks and status.
+- [CloudAlly Billing API](https://apis.io/apis/cloudally/cloudally-billing-api/) — Billing and invoicing data.
+- [CloudAlly Partners API](https://apis.io/apis/cloudally/cloudally-partners-api/) — Partner-portal account, billing, and reseller endpoints.
+- [CloudAlly Restore API](https://apis.io/apis/cloudally/cloudally-restore-api/) — Restore and download requests.
+- [CloudAlly Tasks API](https://apis.io/apis/cloudally/cloudally-tasks-api/) — Long-running task status.
+- [CloudAlly Users API](https://apis.io/apis/cloudally/cloudally-users-api/) — User and account management.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### CloudAlly API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The CloudAlly API is a JSON REST interface at api.cloudally.com. Partners authenticate by exchanging a Client ID and Client Secret at /auth/partner for an access token, while portal users sign in at /auth; the resulting token is presented as an Authorization Bearer header. Endpoints expose backup tasks, restore/download jobs, partner profile data, billing, resellers, and user management. The Partner Portal API today is read-oriented (GET), with administrative actions performed via the standard tenant endpoints.
+- [Cloudally Agentic Access](https://apis.io/agentic-access/cloudally/cloudally-agentic-access/)
 
-- **Human URL:** [https://api.cloudally.com/documentation](https://api.cloudally.com/documentation)
-- **Base URL:** `https://api.cloudally.com`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Backup
-- Data Protection
-- Partner Portal
-- Restore
-- SaaS Backup
+- [CloudAlly Backup Task](https://apis.io/schemas/cloudally/cloudally-backup-task/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://api.cloudally.com/documentation)
-- [Support](https://support.cloudally.com/)
-- [OpenAPI](openapi/cloudally-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cloudally.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cloudally.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Cloudally Context](https://apis.io/jsonld/cloudally/cloudally-context/)
 
-- [LinkedIn](https://www.linkedin.com/company/cloudally)
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [CloudAlly API](https://apis.io/collections/cloudally/open-cloudally/)
+- [CloudAlly Authentication API](https://apis.io/collections/cloudally/open-cloudally-authentication-api/)
+- [CloudAlly Authentication Backups API](https://apis.io/collections/cloudally/open-cloudally-backups-api/)
+- [CloudAlly Authentication Billing API](https://apis.io/collections/cloudally/open-cloudally-billing-api/)
+- [CloudAlly Authentication Partners API](https://apis.io/collections/cloudally/open-cloudally-partners-api/)
+- [CloudAlly Authentication Restore API](https://apis.io/collections/cloudally/open-cloudally-restore-api/)
+- [CloudAlly Authentication Tasks API](https://apis.io/collections/cloudally/open-cloudally-tasks-api/)
+- [CloudAlly Authentication Users API](https://apis.io/collections/cloudally/open-cloudally-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [CloudAlly — jsonschema rules](https://apis.io/rules/cloudally/cloudally-jsonschema-spectral-rules/)
+- [CloudAlly API Rules](https://apis.io/rules/cloudally/cloudally-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cloudally Authentication](https://apis.io/security/cloudally/cloudally-authentication/)
+- [Cloudally Domain Security](https://apis.io/security/cloudally/cloudally-domain-security/)
+- [Cloudally Trust Center](https://apis.io/security/cloudally/cloudally-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cloudally Plans Pricing](https://apis.io/plans/cloudally/cloudally-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cloudally Rate Limits](https://apis.io/rate-limits/cloudally/cloudally-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cloudally Finops](https://apis.io/finops/cloudally/cloudally-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.cloudally.com)
 - [Documentation](https://api.cloudally.com/documentation)
 - [Support](https://support.cloudally.com/)
-- [Terms of Service](https://www.cloudally.com/terms-of-service/)
-- [Privacy Policy](https://www.cloudally.com/privacy-policy/)
-- [Parent Company](https://cybersecurity.opentext.com/legacy/cloudally/)
-- [OpenAPI](openapi/cloudally-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/cloudally-backup-task-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/cloudally-context.jsonld)
-- [Spectral Rules](rules/cloudally-rules.yml) — [Spectral](https://docs.stoplight.io/docs/spectral)
+- [Blog](https://cybersecurity.opentext.com/blog/)
+- [Terms of service](https://www.cloudally.com/terms-of-service/)
+- [Privacy policy](https://www.cloudally.com/privacy-policy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 28.6 |
+| Access clarity | 15.8 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cloudally/](https://apis.io/providers/cloudally/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CloudAlly: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cloudally/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
